@@ -9,9 +9,9 @@ class Vehicle {
 
   Vehicle({
     @required this.id,
-    @required this.licensePlate,
-    @required this.modelId,
     @required this.name,
+    @required this.modelId,
+    @required this.licensePlate,
     @required this.year,
   });
 
@@ -24,24 +24,24 @@ class Vehicle {
   }) {
     return Vehicle(
       id: id ?? this.id,
-      licensePlate: licensePlate ?? this.licensePlate,
-      modelId: modelId ?? this.modelId,
       name: name ?? this.name,
+      modelId: modelId ?? this.modelId,
+      licensePlate: licensePlate ?? this.licensePlate,
       year: year ?? this.year,
     );
   }
 
   Vehicle.fromJson(String id, Map json)
       : id = id,
-        licensePlate = json['license_plate'],
-        modelId = json['model_id'],
         name = json['name'],
+        modelId = json['model_id'],
+        licensePlate = json['license_plate'],
         year = json['year'];
 
   Map toJson() => {
-        'license_plate': licensePlate,
-        'model_id': modelId,
         'name': name,
+        'model_id': modelId,
+        'license_plate': licensePlate,
         'year': year,
       };
 
@@ -87,30 +87,30 @@ class VehicleMake {
 
   VehicleMake({
     @required this.id,
-    @required this.logoUri,
     @required this.name,
+    @required this.logoUri,
   });
 
   VehicleMake copyWith({
     String id,
-    String logoUri,
     String name,
+    String logoUri,
   }) {
     return VehicleMake(
       id: id ?? this.id,
-      logoUri: logoUri ?? this.logoUri,
       name: name ?? this.name,
+      logoUri: logoUri ?? this.logoUri,
     );
   }
 
   VehicleMake.fromJson(String id, Map json)
       : id = id,
-        logoUri = json['logo_uri'],
-        name = json['name'];
+        name = json['name'],
+        logoUri = json['logo_uri'];
 
   Map toJson() => {
-        'logo_uri': logoUri,
         'name': name,
+        'logo_uri': logoUri,
       };
 
   @override

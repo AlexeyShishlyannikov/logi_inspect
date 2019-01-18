@@ -27,7 +27,7 @@ class ReportForm {
     String name,
     List<ReportFormField> formFields,
   }) {
-    ReportForm(
+    return ReportForm(
       id: id ?? this.id,
       created: created ?? this.created,
       description: description ?? this.description,
@@ -41,13 +41,16 @@ class ReportForm {
         created = json['created'],
         description = json['description'],
         name = json['name'],
-        formFields = json['form_fields'];
+        formFields = (json['form_fields'] as Map)
+            .entries
+            .map((entry) => ReportFormField.fromJson(entry.key, entry.value))
+            .toList();
 
   Map toJson() => {
         'created': created,
         'description': description,
         'name': name,
-        'form_fields': formFields,
+        'form_fields': formFields.map((field) => field.toJson()).toList(),
       };
 
   @override
