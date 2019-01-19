@@ -17,6 +17,8 @@ User userReducer(User state, action) {
   if (action is RemoveUserAction) {
     return null;
   }
+
+  // move to middleware
   if (action is LoginUserAction) {
     return User(token: '');
   }
