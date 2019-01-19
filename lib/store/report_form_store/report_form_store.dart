@@ -10,10 +10,7 @@ class ReportFormState {
   ReportFormState.initialState() : reportForm = null;
 
   ReportFormState.fromJson(Map json)
-      : reportForm = ReportForm.fromJson(
-          json['reportForm'] != null ? json['repoerForm']['id'] : null,
-          json['reportForm'],
-        );
+      : reportForm = ReportForm.fromJson(json['reportForm']);
 
   Map toJson() => {'reportForm': reportForm.toJson()};
 }
