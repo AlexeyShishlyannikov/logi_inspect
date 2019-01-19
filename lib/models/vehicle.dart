@@ -31,8 +31,8 @@ class Vehicle {
     );
   }
 
-  Vehicle.fromJson(String id, Map json)
-      : id = id,
+  Vehicle.fromJson(Map json)
+      : id = json['id'],
         name = json['name'],
         modelId = json['model_id'],
         licensePlate = json['license_plate'],

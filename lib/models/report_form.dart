@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 enum FormFieldType {
   TextField,
   NumberField,
+  PhotoField
 }
 
 class ReportForm {
@@ -36,8 +37,8 @@ class ReportForm {
     );
   }
 
-  ReportForm.fromJson(String id, Map json)
-      : id = id,
+  ReportForm.fromJson(Map json)
+      : id = json['id'],
         created = json['created'],
         description = json['description'],
         name = json['name'],
