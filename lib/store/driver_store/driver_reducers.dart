@@ -42,7 +42,7 @@ List<Driver> driversReducer(List<Driver> drivers, action) {
         drivers.indexWhere((driver) => driver.id == action.driver.id);
     return []
       ..addAll(drivers)
-      ..replaceRange(driverIndex, driverIndex + 1, [drivers[driverIndex]]);
+      ..replaceRange(driverIndex, driverIndex + 1, [action.driver]);
   }
 
   return drivers;

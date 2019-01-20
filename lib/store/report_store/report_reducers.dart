@@ -29,7 +29,7 @@ List<Report> reportsReducer(List<Report> reports, action) {
       ..add(action.report);
   }
   if (action is LoadedReportsAction) {
-    return []..addAll(reports);
+    return []..addAll(action.reports);
   }
   if (action is UpdateReportAction) {
     return []
