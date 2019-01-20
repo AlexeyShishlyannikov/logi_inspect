@@ -15,6 +15,10 @@ class ReportState {
             (json['reports'] as List).map((report) => Report.fromJson(report)),
         selectedReport = Report.fromJson(json['selectedReport']);
 
+  ReportState.initialState()
+      : reports = [],
+        selectedReport = null;
+
   Map toJson() => {
         'reports': reports.map((report) => report.toJson()),
         'selectedReport': selectedReport.toJson(),

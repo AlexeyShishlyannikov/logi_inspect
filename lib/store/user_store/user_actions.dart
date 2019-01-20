@@ -46,3 +46,9 @@ class SetAuthenticationAction {
     @required this.isAuthenticated,
   });
 }
+
+class LoadedUserAction {
+  final User user;
+
+  LoadedUserAction(this.user);
+}

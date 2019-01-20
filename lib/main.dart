@@ -17,13 +17,13 @@ class MyApp extends StatelessWidget {
     final Store<AppState> store = Store<AppState>(
       appStateReducer,
       initialState: AppState.initialState(),
-      middleware: [appStateMiddleware],
+      middleware: appStateMiddleware,
     );
 
     return StoreProvider<AppState>(
       store: store,
       child: StoreBuilder<AppState>(
-        onInit: (store) => store.dispatch(GetItemsAction()),
+        onInit: (store) => store.dispatch(LoadFromPreferencesAction()),
         builder: (BuildContext context, Store<AppState> store) {
           return MaterialApp(
             title: 'Flutter Demo',
@@ -42,29 +42,29 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class _ViewModel {
-  final List<Item> items;
-  final Function(String) onAddItem;
-  final Function(Item) onRemoveItem;
-  final Function() onRemoveItems;
+// class _ViewModel {
+//   final List<Item> items;
+//   final Function(String) onAddItem;
+//   final Function(Item) onRemoveItem;
+//   final Function() onRemoveItems;
 
-  _ViewModel({
-    this.items,
-    this.onAddItem,
-    this.onRemoveItem,
-    this.onRemoveItems,
-  });
+//   _ViewModel({
+//     this.items,
+//     this.onAddItem,
+//     this.onRemoveItem,
+//     this.onRemoveItems,
+//   });
 
-  factory _ViewModel.create(Store<AppState> store) {
-    _onAddItem(String body) => store.dispatch(AddItemAction(body));
-    _onRemoveItem(Item item) => store.dispatch(RemoveItemAction(item));
-    _onRemoveItems() => store.dispatch(RemoveItemsAction());
+//   factory _ViewModel.create(Store<AppState> store) {
+//     _onAddItem(String body) => store.dispatch(AddItemAction(body));
+//     _onRemoveItem(Item item) => store.dispatch(RemoveItemAction(item));
+//     _onRemoveItems() => store.dispatch(RemoveItemsAction());
 
-    return _ViewModel(
-      items: store.state.items,
-      onAddItem: _onAddItem,
-      onRemoveItem: _onRemoveItem,
-      onRemoveItems: _onRemoveItems,
-    );
-  }
-}
+//     return _ViewModel(
+//       items: store.state.items,
+//       onAddItem: _onAddItem,
+//       onRemoveItem: _onRemoveItem,
+//       onRemoveItems: _onRemoveItems,
+//     );
+//   }
+// }

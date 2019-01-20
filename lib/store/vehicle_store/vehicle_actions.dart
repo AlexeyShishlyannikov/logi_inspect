@@ -35,4 +35,7 @@ class SelectVehicleAction {
   SelectVehicleAction(this.vehicle);
 }
 
-class DeselectVehicleAction {}
+class UpdateVehicleAction {
+  final Vehicle vehicle;
+  UpdateVehicleAction(this.vehicle);
+}

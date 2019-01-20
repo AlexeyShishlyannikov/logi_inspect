@@ -15,13 +15,18 @@ List<Vehicle> vehiclesReducer(List<Vehicle> state, action) {
       ..addAll(state)
       ..add(action.vehicle);
   }
+  if (action is RemoveVehicleAction) {
+    return List.unmodifiable(List.from(state)..remove(action.vehicle));
+  }
+  if (action is UpdateVehicleAction) {
+    return []
+      ..addAll(state)
+      ..map((vehicle) =>
+          vehicle.id == action.vehicle.id ? action.vehicle : vehicle);
+  }
 
   if (action is LoadedVehiclesAction) {
     return action.vehicles;
-  }
-
-  if (action is RemoveVehicleAction) {
-    return List.unmodifiable(List.from(state)..remove(action.vehicle));
   }
 
   return state;
@@ -30,10 +35,6 @@ List<Vehicle> vehiclesReducer(List<Vehicle> state, action) {
 Vehicle selectedVehicleReducer(Vehicle state, action) {
   if (action is SelectVehicleAction) {
     return action.vehicle;
-  }
-
-  if (action is DeselectVehicleAction) {
-    return null;
   }
 
   return state;

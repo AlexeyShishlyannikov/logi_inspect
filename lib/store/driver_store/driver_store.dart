@@ -14,6 +14,10 @@ class DriverState {
         drivers =
             (json['drivers'] as List).map((driver) => Driver.fromJson(driver));
 
+  DriverState.initialState()
+      : drivers = [],
+        selectedDriver = null;
+
   Map toJson() => {
         'selectedDriver': selectedDriver.toJson(),
         'drivers': drivers.map((driver) => driver.toJson()),
