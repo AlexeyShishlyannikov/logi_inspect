@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:logisticsinspect/pages/auth_page.dart';
+import 'package:logisticsinspect/pages/auth_pages/auth_page.dart';
 
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -33,7 +33,28 @@ class MyApp extends StatelessWidget {
             home: Container(),
             initialRoute: '',
             routes: {
-              '': (context) => AuthPage(),
+              '': (BuildContext context) => AuthPage(),
+              // '/products': (BuildContext context) => ProductsPage(mainModel),
+              // '/admin': (BuildContext context) => ProductsAdminPage(mainModel),
+            },
+            // onGenerateRoute: (RouteSettings settings) {
+            //   final List<String> pathElements = settings.name.split('/');
+            //   if (pathElements[0] != '') {
+            //     return null;
+            //   }
+            //   if (pathElements[1] == 'product') {
+            //     final String productId = pathElements[2];
+            //     final Product product = mainModel.allProducts
+            //         .firstWhere((prod) => prod.id == productId);
+            //     return MaterialPageRoute<bool>(
+            //       builder: (BuildContext context) => ProductPage(product),
+            //     );
+            //   }
+            // },
+            onUnknownRoute: (RouteSettings settings) {
+              return MaterialPageRoute(
+                builder: (BuildContext context) => AuthPage(),
+              );
             },
           );
         },
