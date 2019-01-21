@@ -1,13 +1,14 @@
+import 'package:logisticsinspect/models/company.dart';
 import 'package:logisticsinspect/store/company_store/company_actions.dart';
 import 'package:logisticsinspect/store/company_store/company_store.dart';
 
 CompanyState companyStateReducer(CompanyState state, action) {
   return CompanyState(
-    company: companyReducter(state, action),
+    company: companyReducter(state.company, action),
   );
 }
 
-companyReducter(CompanyState state, action) {
+Company companyReducter(Company state, action) {
   if (action is CompanyLoadedAction) {
     return action.company;
   }
