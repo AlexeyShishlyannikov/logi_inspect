@@ -1,7 +1,9 @@
+import 'package:logisticsinspect/store/store_model.dart';
 import 'package:logisticsinspect/store/user_store/user_store.dart';
 import './user_actions.dart';
 
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,11 +25,11 @@ Future<UserState> loadFromPrefs() async {
 }
 
 void userStateMiddleware(
-    Store<UserState> store, action, NextDispatcher next) async {
+    Store<AppState> store, action, NextDispatcher next) async {
   next(action);
 
   if (action is AddUserAction || action is RemoveUserAction) {
-    saveToPrefs(store.state);
+    saveToPrefs(store.state.userState);
   }
 
   if (action is LoginUserAction || action is RegisterUserAction) {

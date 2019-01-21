@@ -31,9 +31,11 @@ Future<AppState> loadFromPrefs() async {
   return AppState.initialState();
 }
 
-void appStatePrefsMiddleware(
+void appStateMiddleware(
     Store<AppState> store, action, NextDispatcher next) async {
   next(action);
+
+  particalStateMiddleware.forEach((middleware) => middleware(store, action, next));
 
   if (action is LoadFromPreferencesAction) {
     await loadFromPrefs()
@@ -41,12 +43,12 @@ void appStatePrefsMiddleware(
   }
 }
 
-final List appStateMiddleware = List.of([
-  appStatePrefsMiddleware,
+final List<Function(Store<AppState>, dynamic, Function(dynamic))> particalStateMiddleware = [
   companyStateMiddleware,
   driverStateMiddleware,
   reportFormStateMiddleware,
+  reportStateMiddleware,
   teamStateMiddleware,
   userStateMiddleware,
   vehicleStateMiddleware
-]);
+];

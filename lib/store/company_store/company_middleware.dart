@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:logisticsinspect/store/company_store/company_store.dart';
+import 'package:logisticsinspect/store/store_model.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,11 +25,11 @@ Future<CompanyState> loadFromPrefs() async {
 }
 
 void companyStateMiddleware(
-    Store<CompanyState> store, action, NextDispatcher next) async {
+    Store<AppState> store, action, NextDispatcher next) async {
   next(action);
   
   if (action is RemoveCompanyAction) {
-    return saveToPrefs(store.state);
+    return saveToPrefs(store.state.companyState);
   }
 
   if (action is GetCompanyAction) {

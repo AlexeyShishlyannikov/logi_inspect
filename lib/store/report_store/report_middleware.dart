@@ -1,8 +1,10 @@
 import 'package:logisticsinspect/store/report_store/report_store.dart';
+import 'package:logisticsinspect/store/store_model.dart';
 
 import './report_actions.dart';
 
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,13 +26,13 @@ Future<ReportState> loadFromPrefs() async {
 }
 
 void reportStateMiddleware(
-    Store<ReportState> store, action, NextDispatcher next) async {
+    Store<AppState> store, action, NextDispatcher next) async {
   next(action);
 
   if (action is AddReportAction ||
       action is UpdateReportAction ||
       action is SelectReportAction) {
-    saveToPrefs(store.state);
+    saveToPrefs(store.state.reportState);
   }
 
   if (action is GetReportsAction) {

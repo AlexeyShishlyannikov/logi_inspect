@@ -26,7 +26,7 @@ class _AuthPageState extends State<AuthPage> {
 
   Widget _buildEmailTextFormField() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'EMail'),
+      decoration: InputDecoration(labelText: 'Email'),
       keyboardType: TextInputType.emailAddress,
       controller: _emailTextController,
       validator: (String input) {

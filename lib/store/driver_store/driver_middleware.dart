@@ -1,6 +1,9 @@
+import 'package:logisticsinspect/store/store_model.dart';
+
 import './driver_actions.dart';
 
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:logisticsinspect/store/driver_store/driver_store.dart';
 import 'package:redux/redux.dart';
@@ -23,13 +26,13 @@ Future<DriverState> loadFromPrefs() async {
 }
 
 void driverStateMiddleware(
-    Store<DriverState> store, action, NextDispatcher next) async {
+    Store<AppState> store, action, NextDispatcher next) async {
   next(action);
 
   if (action is AddDriverAction ||
       action is RemoveDriverAction ||
       action is UpdateDriverAction) {
-    saveToPrefs(store.state);
+    saveToPrefs(store.state.driverState);
   }
 
   if (action is GetDriversAction) {

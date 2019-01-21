@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     final Store<AppState> store = Store<AppState>(
       appStateReducer,
       initialState: AppState.initialState(),
-      middleware: appStateMiddleware,
+      middleware: [appStateMiddleware],
     );
 
     return StoreProvider<AppState>(
@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.blue,
             ),
             home: Container(),
-            initialRoute: '/',
+            initialRoute: '',
             routes: {
-              '/': (context) => AuthPage(),
+              '': (context) => AuthPage(),
             },
           );
         },

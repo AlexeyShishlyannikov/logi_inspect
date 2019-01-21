@@ -1,7 +1,9 @@
+import 'package:logisticsinspect/store/store_model.dart';
 import 'package:logisticsinspect/store/vehicle_store/vehicle_store.dart';
 import './vehicle_actions.dart';
 
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,14 +25,14 @@ Future<VehicleState> loadFromPrefs() async {
 }
 
 void vehicleStateMiddleware(
-    Store<VehicleState> store, action, NextDispatcher next) async {
+    Store<AppState> store, action, NextDispatcher next) async {
   next(action);
 
   if (action is AddVehicleAction ||
       action is RemoveVehicleAction ||
       action is SelectVehicleAction ||
       action is UpdateVehicleAction) {
-    saveToPrefs(store.state);
+    saveToPrefs(store.state.vehicleState);
   }
 
   if (action is GetVehiclesAction) {

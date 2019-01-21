@@ -1,8 +1,10 @@
+import 'package:logisticsinspect/store/store_model.dart';
 import 'package:logisticsinspect/store/team_store/team_store.dart';
 
 import './team_actions.dart';
 
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,14 +26,14 @@ Future<TeamState> loadFromPrefs() async {
 }
 
 void teamStateMiddleware(
-    Store<TeamState> store, action, NextDispatcher next) async {
+    Store<AppState> store, action, NextDispatcher next) async {
   next(action);
 
   if (action is AddTeamAction ||
       action is RemoveTeamAction ||
       action is SelectTeamAction ||
       action is UpdateTeamAction) {
-    saveToPrefs(store.state);
+    saveToPrefs(store.state.teamState);
   }
 
   if (action is GetTeamsAction) {
