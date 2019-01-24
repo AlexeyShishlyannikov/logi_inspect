@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatelessWidget {
+  Widget _buildReportFormsDashboardTile() {
+    return Container();
+  }
+
+  Widget _buildReportDashboardTile() {
+    return Container();
+  }
+
+  Widget _buildDriversDashboardTile() {
+    return Container();
+  }
+
+  Widget _buildVehiclesDashboardTile() {
+    return Container();
+  }
+
+  Widget _buildTeamsDashboardTile() {
+    return Container();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +32,11 @@ class DashboardPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: <Widget>[
-              
+              _buildTeamsDashboardTile(),
+              _buildVehiclesDashboardTile(),
+              _buildDriversDashboardTile(),
+              _buildReportDashboardTile(),
+              _buildReportFormsDashboardTile(),
             ],
           ),
         ),

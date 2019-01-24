@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class DriverEditPage extends StatelessWidget {
-  Widget _buildDriverActionItems() {
+class AuthResetPasswordPage extends StatelessWidget {
+  Widget _buildPasswordTextField() {
     return Container();
   }
 
-  Widget _buildDriverInfoForm() {
+  Widget _buildConfirmPasswordTextField() {
     return Container();
   }
 
-  Widget _buildDriverEditImage() {
+  Widget _buildSubmitButton() {
     return Container();
   }
 
@@ -17,16 +17,16 @@ class DriverEditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Driver'),
+        title: Text('Reset Password'),
       ),
       body: Container(
         padding: EdgeInsets.all(32.0),
         child: Center(
           child: Column(
             children: <Widget>[
-              _buildDriverEditImage(),
-              _buildDriverInfoForm(),
-              _buildDriverActionItems(),
+              _buildPasswordTextField(),
+              _buildConfirmPasswordTextField(),
+              _buildSubmitButton(),
             ],
           ),
         ),
