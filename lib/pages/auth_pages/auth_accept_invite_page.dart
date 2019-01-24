@@ -1,32 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/constants/constants.dart';
 
 class AuthAcceptInvitePage extends StatelessWidget {
-  Widget _buildSubmitButton() {
-    return Container();
+  final _formKey = GlobalKey<FormState>();
+  final _emailTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
+  final _firstNameTextController = TextEditingController();
+  final _lastNameTextController = TextEditingController();
+
+  Widget _buildCompanyInfoTile() {
+    return Container(
+      child: Text('Company name'),
+    );
   }
 
-  Widget _buildLastNameTextField() {
-    return Container();
-  }
-
-  Widget _buildFirstNameTextField() {
-    return Container();
-  }
-
-  Widget _buildConfirmPasswordTextField() {
-    return Container();
+  Widget _buildEmailTextField() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'Email'),
+      keyboardType: TextInputType.emailAddress,
+      controller: _emailTextController,
+      validator: (String input) {
+        if (input.isEmpty || !RegExp(emailRegexp).hasMatch(input)) {
+          return 'Please provide a valid email.';
+        }
+      },
+    );
   }
 
   Widget _buildPasswordTextField() {
-    return Container();
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'Password'),
+      keyboardType: TextInputType.text,
+      obscureText: true,
+      controller: _passwordTextController,
+      validator: (String input) {
+        if (input.length < 6) {
+          return 'Password should be at least 6 characters.';
+        }
+      },
+    );
   }
 
-  Widget _buildUsernameTextField() {
-    return Container();
+  Widget _buildConfirmPasswordTextField() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'Confirm Password'),
+      keyboardType: TextInputType.text,
+      obscureText: true,
+      validator: (String input) {
+        if (_passwordTextController.text != input) {
+          return 'Passwords don\'t match.';
+        }
+      },
+    );
   }
 
-  Widget _buildCompanyInfoTile() {
-    return Container();
+  Widget _buildFirstNameTextField() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'First Name'),
+      keyboardType: TextInputType.text,
+      controller: _emailTextController,
+      validator: (String input) {
+        if (input.isEmpty) {
+          return 'Please provide a valid name.';
+        }
+      },
+    );
+  }
+
+  Widget _buildLastNameTextField() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'Last Name'),
+      keyboardType: TextInputType.text,
+      controller: _emailTextController,
+      validator: (String input) {
+        if (input.isEmpty) {
+          return 'Please provide a valid name.';
+        }
+      },
+    );
+  }
+
+  Widget _buildSubmitButton() {
+    return RaisedButton(
+      child: Text('Reset Password'),
+      onPressed: _submitForm,
+    );
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+    }
   }
 
   @override
@@ -41,7 +105,7 @@ class AuthAcceptInvitePage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _buildCompanyInfoTile(),
-              _buildUsernameTextField(),
+              _buildEmailTextField(),
               _buildPasswordTextField(),
               _buildConfirmPasswordTextField(),
               _buildFirstNameTextField(),
