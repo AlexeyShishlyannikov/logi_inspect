@@ -10,9 +10,7 @@ enum AuthMode {
 
 class AuthPage extends StatefulWidget {
   @override
-  _AuthPageState createState() {
-    return _AuthPageState();
-  }
+  _AuthPageState createState() => _AuthPageState();
 }
 
 class _AuthPageState extends State<AuthPage> {
@@ -73,7 +71,8 @@ class _AuthPageState extends State<AuthPage> {
 
   void _switchAuthModes() {
     setState(() {
-      _authMode = _authMode == AuthMode.Login ? AuthMode.Register : AuthMode.Login;
+      _authMode =
+          _authMode == AuthMode.Login ? AuthMode.Register : AuthMode.Login;
     });
   }
 

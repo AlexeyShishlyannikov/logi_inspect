@@ -58,10 +58,10 @@ class AuthAcceptInvitePage extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(labelText: 'First Name'),
       keyboardType: TextInputType.text,
-      controller: _emailTextController,
+      controller: _firstNameTextController,
       validator: (String input) {
         if (input.isEmpty) {
-          return 'Please provide a valid name.';
+          return 'Please provide a valid first name.';
         }
       },
     );
@@ -71,10 +71,10 @@ class AuthAcceptInvitePage extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Last Name'),
       keyboardType: TextInputType.text,
-      controller: _emailTextController,
+      controller: _lastNameTextController,
       validator: (String input) {
         if (input.isEmpty) {
-          return 'Please provide a valid name.';
+          return 'Please provide a valid last name.';
         }
       },
     );
