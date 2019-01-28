@@ -1,32 +1,54 @@
 import 'package:flutter/material.dart';
 
 class VehiclesPage extends StatelessWidget {
+  Widget _buildSearchBox() {
+    return TextField(
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.search),
+        labelText: 'Search',
+      ),
+      keyboardType: TextInputType.text,
+      onChanged: (String input) {},
+    );
+  }
+
   Widget _buildVehicleImage() {
-    return Container();
+    return CircleAvatar(
+      child: Icon(Icons.drive_eta),
+    );
   }
 
   Widget _buildVehicleCardTitle() {
-    return Container();
+    return Container(
+      child: Text('Vehicle Name'),
+    );
   }
 
   Widget _buildVehicleStatsText() {
-    return Container();
+    return Text('Vehicle Description');
   }
 
   Widget _buildSelectButton() {
-    return Container();
+    return Container(
+      child: IconButton(
+        icon: Icon(Icons.chevron_right),
+        onPressed: () {},
+      ),
+    );
   }
 
   Widget _buildVehicleCard(BuildContext context, int index) {
     return Container(
       padding: EdgeInsets.all(10.0),
-      child: Row(
+      child: Column(
         children: <Widget>[
-          _buildVehicleImage(),
-          _buildVehicleCardTitle(),
-          _buildVehicleStatsText(),
-          Expanded(child: Container()),
-          _buildSelectButton(),
+          ListTile(
+            leading: _buildVehicleImage(),
+            title: _buildVehicleCardTitle(),
+            subtitle: _buildVehicleStatsText(),
+            trailing: _buildSelectButton(),
+          ),
+          Divider(),
         ],
       ),
     );
@@ -38,10 +60,18 @@ class VehiclesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Vehicles'),
       ),
-      body: Container(
-        child: ListView.builder(
-          itemBuilder: _buildVehicleCard,
-          itemCount: 4,
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: Column(
+          children: <Widget>[
+            _buildSearchBox(),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: _buildVehicleCard,
+                itemCount: 4,
+              ),
+            ),
+          ],
         ),
       ),
     );
