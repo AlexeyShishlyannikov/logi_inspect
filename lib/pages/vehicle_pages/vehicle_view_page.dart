@@ -48,9 +48,19 @@ class VehicleViewPage extends StatelessWidget {
           style: TextStyle(fontSize: 16.0),
         ),
         Card(
-          child: Column(
+          child: Row(
             children: <Widget>[
-
+              Column(
+                children: <Widget>[
+                  Text('## Reports'),
+                  SizedBox(height: 15),
+                  Text('Last report: Yesterday'),
+                ],
+              ),
+              RaisedButton(
+                child: Text('See Reports'),
+                onPressed: () {},
+              )
             ],
           ),
         ),
