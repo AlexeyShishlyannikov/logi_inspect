@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class VehicleEditPage extends StatefulWidget {
   @override
   VehicleEditPageState createState() {
-    return new VehicleEditPageState();
+    return VehicleEditPageState();
   }
 }
 

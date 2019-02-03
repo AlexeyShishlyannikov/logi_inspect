@@ -1,25 +1,41 @@
 import 'package:flutter/material.dart';
 
 class TeamsPage extends StatelessWidget {
+  Widget _buildSearchBox() {
+    return TextField(
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.search),
+        labelText: 'Search',
+      ),
+      keyboardType: TextInputType.text,
+      onChanged: (String input) {},
+    );
+  }
+
   Widget _buildTeamCardImage() {
-    return Container();
+    return Icon(Icons.people);
   }
 
   Widget _buildTeamCardStats() {
-    return Container();
-  }
-
-  Widget _buildTeamCardActionButtons() {
-    return Container();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text('# Drivers'),
+        Text('Manager: Name'),
+      ],
+    );
   }
 
   Widget _buildTeamCard(BuildContext context, int index) {
-    return Row(
+    return Column(
       children: <Widget>[
-        _buildTeamCardImage(),
-        Text('Team Name'),
-        _buildTeamCardStats(),
-        _buildTeamCardActionButtons(),
+        ListTile(
+          leading: _buildTeamCardImage(),
+          title: Text('Team Name'),
+          subtitle: _buildTeamCardStats(),
+          trailing: Icon(Icons.keyboard_arrow_right),
+        ),
+        Divider(),
       ],
     );
   }
@@ -34,17 +50,21 @@ class TeamsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Teams'),
       ),
-      body: Container(
-          padding: EdgeInsets.all(32.0),
-          child: Column(
-            children: <Widget>[
-              ListView.builder(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: Column(
+          children: <Widget>[
+            _buildSearchBox(),
+            Expanded(
+              child: ListView.builder(
                 itemBuilder: _buildTeamCard,
                 itemCount: 5,
               ),
-              _buildTeamsActionItems(),
-            ],
-          )),
+            ),
+            _buildTeamsActionItems(),
+          ],
+        ),
+      ),
     );
   }
 }

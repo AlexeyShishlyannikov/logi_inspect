@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/vehicle/vehicle_tile.dart';
 
 class VehiclesPage extends StatelessWidget {
   Widget _buildSearchBox() {
@@ -12,45 +13,11 @@ class VehiclesPage extends StatelessWidget {
     );
   }
 
-  Widget _buildVehicleImage() {
-    return CircleAvatar(
-      child: Icon(Icons.drive_eta),
-    );
-  }
-
-  Widget _buildVehicleCardTitle() {
-    return Container(
-      child: Text('Vehicle Name'),
-    );
-  }
-
-  Widget _buildVehicleStatsText() {
-    return Text('Vehicle Description');
-  }
-
-  Widget _buildSelectButton() {
-    return Container(
-      child: IconButton(
-        icon: Icon(Icons.chevron_right),
-        onPressed: () {},
-      ),
-    );
-  }
 
   Widget _buildVehicleCard(BuildContext context, int index) {
     return Container(
       padding: EdgeInsets.all(10.0),
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            leading: _buildVehicleImage(),
-            title: _buildVehicleCardTitle(),
-            subtitle: _buildVehicleStatsText(),
-            trailing: _buildSelectButton(),
-          ),
-          Divider(),
-        ],
-      ),
+      child: VehicleTile(),
     );
   }
 
