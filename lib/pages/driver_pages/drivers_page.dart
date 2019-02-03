@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/driver/driver_tile.dart';
 
 class DriversPage extends StatelessWidget {
   Widget _buildDriverTile(BuildContext context, int index) {
-    return Container();
+    return DriverTile();
   }
 
   Widget _buildDriverActionItems() {
@@ -15,17 +16,16 @@ class DriversPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Drivers'),
       ),
-      body: Container(
-        padding: EdgeInsets.all(32.0),
-        child: Column(
-          children: <Widget>[
-            ListView.builder(
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
               itemBuilder: _buildDriverTile,
               itemCount: 10,
             ),
-            _buildDriverActionItems(),
-          ],
-        ),
+          ),
+          _buildDriverActionItems(),
+        ],
       ),
     );
   }
