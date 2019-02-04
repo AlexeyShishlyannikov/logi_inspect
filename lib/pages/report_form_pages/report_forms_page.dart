@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/report_form/report_form_tile.dart';
 
 class ReportFormsPage extends StatelessWidget {
-  Widget _buildReportFormTile(BuildContext context, int index) {
-    return Container();
+  Widget _buildReportFormTile() {
+    return FlatButton(
+      child: ReportFormTile(),
+      onPressed: () {},
+    );
+  }
+
+  List<Widget> _getReportFormTiles() {
+    return List.generate(3, (_) => _buildReportFormTile());
+  }
+
+  List<Widget> _getArchivedReportFormTiles() {
+    return List.generate(1, (_) => _buildReportFormTile());
   }
 
   Widget _buildReportFormsActionItems() {
@@ -15,19 +27,42 @@ class ReportFormsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Forms'),
       ),
-      body: Container(
-        padding: EdgeInsets.all(32.0),
-        child: Center(
-          child: Column(
+      body: ListView(
+        children: <Widget>[
+          Column(
             children: <Widget>[
-              ListView.builder(
-                itemBuilder: _buildReportFormTile,
-                itemCount: 10,
+              Text(
+                'Active Forms',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-              _buildReportFormsActionItems(),
+              SizedBox(height: 10.0),
+              Column(children: _getReportFormTiles()),
             ],
           ),
-        ),
+          Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.archive),
+                  Text(
+                    'Archived Forms',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10.0),
+              Column(children: _getArchivedReportFormTiles()),
+            ],
+          ),
+          _buildReportFormsActionItems(),
+        ],
       ),
     );
   }

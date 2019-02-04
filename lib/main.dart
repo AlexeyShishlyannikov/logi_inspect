@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:logisticsinspect/pages/auth_pages/auth_page.dart';
 
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:logisticsinspect/pages/driver_pages/driver_edit_page.dart';
+import 'package:logisticsinspect/pages/driver_pages/driver_invite_page.dart';
 import 'package:logisticsinspect/pages/driver_pages/driver_view_page.dart';
+import 'package:logisticsinspect/pages/report_form_pages/report_forms_page.dart';
 import 'package:redux/redux.dart';
 
 import './store/actions.dart';
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
             home: Container(),
             initialRoute: '',
             routes: {
-              '': (BuildContext context) => DriverViewPage(),
+              '': (BuildContext context) => ReportFormsPage(),
               // '/products': (BuildContext context) => ProductsPage(mainModel),
               // '/admin': (BuildContext context) => ProductsAdminPage(mainModel),
             },

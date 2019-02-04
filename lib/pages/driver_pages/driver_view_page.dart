@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/report/report_tile.dart';
 
 class DriverViewPage extends StatelessWidget {
   Widget _buildDriverImage(BuildContext context) {
@@ -20,19 +21,24 @@ class DriverViewPage extends StatelessWidget {
         Column(
           children: <Widget>[
             Text('Person Name', style: TextStyle(fontSize: 20.0)),
-            Text('Team Name'),
           ],
         ),
         SizedBox(height: 20.0),
         Column(
           children: <Widget>[
-            ListTile(
-              title: Text('email@gmail.com'),
-              subtitle: Text('Email'),
+            FlatButton(
+              child: ListTile(
+                title: Text('email@gmail.com'),
+                subtitle: Text('Email'),
+              ),
+              onPressed: () {},
             ),
-            ListTile(
-              title: Text('1 (102) 232-3233'),
-              subtitle: Text('Phone'),
+            FlatButton(
+              child: ListTile(
+                title: Text('1 (102) 232-3233'),
+                subtitle: Text('Phone'),
+              ),
+              onPressed: () {},
             ),
           ],
         )
@@ -40,8 +46,51 @@ class DriverViewPage extends StatelessWidget {
     );
   }
 
+  Widget _buildDriverTeams() {
+    return Column(
+      children: <Widget>[
+        Text('Teams', style: TextStyle(fontSize: 18.0)),
+        SizedBox(height: 10.0),
+        Card(
+          child: Column(
+            children: List.generate(
+              2,
+              (_) => ListTile(
+                    title: Text('Team Name'),
+                    subtitle: Text('Team Role'),
+                  ),
+            )..add(Container(
+                padding: EdgeInsets.only(bottom: 10.0),
+                child: RaisedButton(
+                  child: Text('Add Team'),
+                  onPressed: () {},
+                ),
+              )),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildDriverRecentReports() {
-    return Container();
+    return Column(
+      children: <Widget>[
+        Text('Reports', style: TextStyle(fontSize: 18.0)),
+        SizedBox(height: 10.0),
+        Card(
+          child: Column(
+            children: List.generate(3, (_) => ReportTile())
+              ..add(Container(
+                padding: EdgeInsets.only(bottom: 10.0),
+                child: RaisedButton(
+                  child: Text('See more'),
+                  onPressed: () {},
+                ),
+              )),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildDriverActionItems() {
@@ -54,10 +103,13 @@ class DriverViewPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Driver'),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           _buildDriverImage(context),
           _buildDriverInfo(),
+          SizedBox(height: 10.0),
+          _buildDriverTeams(),
+          SizedBox(height: 10.0),
           _buildDriverRecentReports(),
           _buildDriverActionItems(),
         ],

@@ -3,21 +3,25 @@ import 'package:flutter/foundation.dart';
 enum FormFieldType {
   TextField,
   NumberField,
-  PhotoField
+  PhotoField,
 }
 
 class ReportForm {
   final String id;
   final DateTime created;
+  final DateTime updated;
   final String description;
   final String name;
+  final bool isArchived;
   final List<ReportFormField> formFields;
 
   ReportForm({
     @required this.id,
-    @required this.created,
-    @required this.description,
     @required this.name,
+    @required this.description,
+    @required this.created,
+    @required this.updated,
+    @required this.isArchived,
     @required this.formFields,
   });
 
@@ -30,18 +34,22 @@ class ReportForm {
   }) {
     return ReportForm(
       id: id ?? this.id,
-      created: created ?? this.created,
-      description: description ?? this.description,
       name: name ?? this.name,
+      description: description ?? this.description,
+      created: created ?? this.created,
+      updated: updated ?? this.updated,
+      isArchived: isArchived ?? this.isArchived,
       formFields: formFields ?? this.formFields,
     );
   }
 
   ReportForm.fromJson(Map json)
       : id = json['id'],
-        created = json['created'],
-        description = json['description'],
         name = json['name'],
+        description = json['description'],
+        created = json['created'],
+        updated = json['updated'],
+        isArchived = json['isArchived'],
         formFields = (json['form_fields'] as List)
             .map((formField) => ReportFormField.fromJson(formField))
             .toList();
@@ -50,6 +58,8 @@ class ReportForm {
         'created': created,
         'description': description,
         'name': name,
+        'isArchived': isArchived,
+        'updated': updated,
         'form_fields': formFields.map((field) => field.toJson()).toList(),
       };
 

@@ -30,10 +30,7 @@ class ReportFormTile extends StatelessWidget {
   }
 
   Widget _buildSelectButton() {
-    return IconButton(
-      icon: Icon(Icons.chevron_right),
-      onPressed: () {},
-    );
+    return Icon(Icons.chevron_right);
   }
 
   @override
