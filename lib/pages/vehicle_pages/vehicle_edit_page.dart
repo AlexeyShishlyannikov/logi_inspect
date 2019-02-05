@@ -8,16 +8,12 @@ class VehicleEditPage extends StatefulWidget {
 }
 
 class VehicleEditPageState extends State<VehicleEditPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameTextController = TextEditingController();
-
   final TextEditingController _yearTextController = TextEditingController();
-
   final TextEditingController _licensePlateTextController =
       TextEditingController();
-
   final TextEditingController _vinTextController = TextEditingController();
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildVehiclePhotoForm() {
     return Column(

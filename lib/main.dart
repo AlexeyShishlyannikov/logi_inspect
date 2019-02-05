@@ -5,6 +5,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:logisticsinspect/pages/driver_pages/driver_edit_page.dart';
 import 'package:logisticsinspect/pages/driver_pages/driver_invite_page.dart';
 import 'package:logisticsinspect/pages/driver_pages/driver_view_page.dart';
+import 'package:logisticsinspect/pages/report_form_pages/report_form_build_page.dart';
+import 'package:logisticsinspect/pages/report_form_pages/report_form_input_build_page.dart';
 import 'package:logisticsinspect/pages/report_form_pages/report_forms_page.dart';
 import 'package:redux/redux.dart';
 
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
             home: Container(),
             initialRoute: '',
             routes: {
-              '': (BuildContext context) => ReportFormsPage(),
+              '': (BuildContext context) => ReportFormInputBuildPage(),
               // '/products': (BuildContext context) => ProductsPage(mainModel),
               // '/admin': (BuildContext context) => ProductsAdminPage(mainModel),
             },
