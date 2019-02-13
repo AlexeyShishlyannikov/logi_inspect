@@ -1,24 +1,49 @@
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatelessWidget {
-  Widget _buildReportFormsDashboardTile() {
-    return Container();
+  Widget _buildTeamsDashboardTile(BuildContext context) {
+    return FlatButton(
+      child: Text('To Teams'),
+      onPressed: () {
+        Navigator.pushReplacementNamed(context, '/teams');
+      },
+    );
   }
 
-  Widget _buildReportDashboardTile() {
-    return Container();
+  Widget _buildVehiclesDashboardTile(BuildContext context) {
+    return FlatButton(
+      child: Text('To Vehicles'),
+      onPressed: () {
+        Navigator.pushReplacementNamed(context, '/vehicles');
+      },
+    );
   }
 
-  Widget _buildDriversDashboardTile() {
-    return Container();
+  Widget _buildDriversDashboardTile(BuildContext context) {
+    return FlatButton(
+      child: Text('To Drivers'),
+      onPressed: () {
+        Navigator.pushReplacementNamed(context, '/drivers');
+      },
+    );
   }
 
-  Widget _buildVehiclesDashboardTile() {
-    return Container();
+  Widget _buildReportDashboardTile(BuildContext context) {
+    return FlatButton(
+      child: Text('To Reports'),
+      onPressed: () {
+        Navigator.pushReplacementNamed(context, '/reports');
+      },
+    );
   }
 
-  Widget _buildTeamsDashboardTile() {
-    return Container();
+  Widget _buildReportFormsDashboardTile(BuildContext context) {
+    return FlatButton(
+      child: Text('To Report Forms'),
+      onPressed: () {
+        Navigator.pushReplacementNamed(context, '/report-forms');
+      },
+    );
   }
 
   @override
@@ -27,19 +52,14 @@ class DashboardPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Dashboard'),
       ),
-      body: Container(
-        padding: EdgeInsets.all(32.0),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              _buildTeamsDashboardTile(),
-              _buildVehiclesDashboardTile(),
-              _buildDriversDashboardTile(),
-              _buildReportDashboardTile(),
-              _buildReportFormsDashboardTile(),
-            ],
-          ),
-        ),
+      body: ListView(
+        children: <Widget>[
+          _buildTeamsDashboardTile(context),
+          _buildVehiclesDashboardTile(context),
+          _buildDriversDashboardTile(context),
+          _buildReportDashboardTile(context),
+          _buildReportFormsDashboardTile(context),
+        ],
       ),
     );
   }

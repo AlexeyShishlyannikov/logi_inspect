@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:logisticsinspect/pages/auth_pages/auth_page.dart';
 
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:logisticsinspect/pages/dashboard_pages/dashboard_page.dart';
 import 'package:logisticsinspect/pages/driver_pages/driver_edit_page.dart';
 import 'package:logisticsinspect/pages/driver_pages/driver_invite_page.dart';
 import 'package:logisticsinspect/pages/driver_pages/driver_view_page.dart';
 import 'package:logisticsinspect/pages/report_form_pages/report_form_build_page.dart';
 import 'package:logisticsinspect/pages/report_form_pages/report_form_input_build_page.dart';
 import 'package:logisticsinspect/pages/report_form_pages/report_forms_page.dart';
+import 'package:logisticsinspect/routes.dart';
 import 'package:redux/redux.dart';
 
 import './store/actions.dart';
@@ -36,30 +38,12 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: Container(),
-            initialRoute: '',
-            routes: {
-              '': (BuildContext context) => ReportFormInputBuildPage(),
-              // '/products': (BuildContext context) => ProductsPage(mainModel),
-              // '/admin': (BuildContext context) => ProductsAdminPage(mainModel),
-            },
-            // onGenerateRoute: (RouteSettings settings) {
-            //   final List<String> pathElements = settings.name.split('/');
-            //   if (pathElements[0] != '') {
-            //     return null;
-            //   }
-            //   if (pathElements[1] == 'product') {
-            //     final String productId = pathElements[2];
-            //     final Product product = mainModel.allProducts
-            //         .firstWhere((prod) => prod.id == productId);
-            //     return MaterialPageRoute<bool>(
-            //       builder: (BuildContext context) => ProductPage(product),
-            //     );
-            //   }
-            // },
+            initialRoute: '/',
+            routes: appRoutes,
+            onGenerateRoute: appRouteGenerator,
             onUnknownRoute: (RouteSettings settings) {
               return MaterialPageRoute(
-                builder: (BuildContext context) => AuthPage(),
+                builder: (BuildContext context) => DashboardPage(),
               );
             },
           );
