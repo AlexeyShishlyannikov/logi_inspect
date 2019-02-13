@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
 class ReportFormBuildPage extends StatefulWidget {
+  final String reportFormId;
+
+  ReportFormBuildPage(this.reportFormId);
+
   @override
   ReportFormBuildPageState createState() {
-    return ReportFormBuildPageState();
+    return ReportFormBuildPageState(this.reportFormId);
   }
 }
 
 class ReportFormBuildPageState extends State<ReportFormBuildPage> {
+  final String reportFormId;
   final _formKey = GlobalKey<FormState>();
   final _nameTextController = TextEditingController();
   final _descriptionTextController = TextEditingController();
+
+  ReportFormBuildPageState(this.reportFormId);
 
   Widget _buildNameTextField() {
     return TextFormField(

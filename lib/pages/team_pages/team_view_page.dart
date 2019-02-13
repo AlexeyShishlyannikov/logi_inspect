@@ -5,6 +5,9 @@ import 'package:logisticsinspect/widgets/report_form/report_form_tile.dart';
 import 'package:logisticsinspect/widgets/vehicle/vehicle_tile.dart';
 
 class TeamViewPage extends StatelessWidget {
+  final String teamId;
+  TeamViewPage(this.teamId);
+
   Widget _buildTeamModelSection() {
     return Column(
       children: <Widget>[

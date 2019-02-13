@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:logisticsinspect/widgets/report/report_tile.dart';
 
 class DriverViewPage extends StatelessWidget {
+  final String driverId;
+
+  DriverViewPage(this.driverId);
+
   Widget _buildDriverImage(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20.0),

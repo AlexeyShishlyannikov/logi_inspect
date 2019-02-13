@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:logisticsinspect/widgets/report/report_value_tile.dart';
 
 class ReportViewPage extends StatelessWidget {
+  final String reportId;
+  ReportViewPage(this.reportId);
+
   List<Widget> _buildReportValueTiles() {
     return List.generate(10, (_) => null).map((reportValue) {
       return ReportValueTile(

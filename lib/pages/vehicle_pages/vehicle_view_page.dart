@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class VehicleViewPage extends StatelessWidget {
+  final String vehicleId;
+  VehicleViewPage(this.vehicleId);
+
   Widget _buildVehicleImage() {
     return Image.asset('assets/van.jpg');
   }

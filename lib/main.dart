@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:logisticsinspect/pages/auth_pages/auth_page.dart';
-
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:logisticsinspect/pages/dashboard_pages/dashboard_page.dart';
-import 'package:logisticsinspect/pages/driver_pages/driver_edit_page.dart';
-import 'package:logisticsinspect/pages/driver_pages/driver_invite_page.dart';
-import 'package:logisticsinspect/pages/driver_pages/driver_view_page.dart';
-import 'package:logisticsinspect/pages/report_form_pages/report_form_build_page.dart';
-import 'package:logisticsinspect/pages/report_form_pages/report_form_input_build_page.dart';
-import 'package:logisticsinspect/pages/report_form_pages/report_forms_page.dart';
-import 'package:logisticsinspect/routes.dart';
 import 'package:redux/redux.dart';
+
+import 'package:logisticsinspect/pages/dashboard_pages/dashboard_page.dart';
+import 'package:logisticsinspect/routes.dart';
 
 import './store/actions.dart';
 import './store/reducers.dart';
