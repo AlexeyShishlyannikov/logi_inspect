@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 
 class TeamEditPage extends StatefulWidget {
+  final String teamId;
+  
+  TeamEditPage(this.teamId);
   @override
   TeamEditPageState createState() {
-    return TeamEditPageState();
+    return TeamEditPageState(teamId);
   }
 }
 
 class TeamEditPageState extends State<TeamEditPage> {
+  final String teamId;
+  
   final TextEditingController _nameTextController = TextEditingController();
   final TextEditingController _descriptionTextController =
       TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  
+  TeamEditPageState(this.teamId);
 
   Widget _buildTeamModelForm() {
     return Form(

@@ -2,19 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:logisticsinspect/constants/constants.dart';
 
 class DriverEditPage extends StatefulWidget {
+  final String driverId;
+
+  DriverEditPage(this.driverId);
+
   @override
   DriverEditPageState createState() {
-    return DriverEditPageState();
+    return DriverEditPageState(driverId);
   }
 }
 
 class DriverEditPageState extends State<DriverEditPage> {
+  final String driverId;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _emailTextController = TextEditingController();
   final _oldPasswordTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
   final _firstNameTextController = TextEditingController();
   final _lastNameTextController = TextEditingController();
+
+  DriverEditPageState(this.driverId);
 
   Widget _buildEmailTextField() {
     return TextFormField(

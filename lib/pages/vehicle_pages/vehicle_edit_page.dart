@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 
 class VehicleEditPage extends StatefulWidget {
+  final String vehicleId;
+
+  VehicleEditPage(this.vehicleId);
+
   @override
   VehicleEditPageState createState() {
-    return VehicleEditPageState();
+    return VehicleEditPageState(this.vehicleId);
   }
 }
 
 class VehicleEditPageState extends State<VehicleEditPage> {
+  final String vehicleId;
   final _formKey = GlobalKey<FormState>();
   final _nameTextController = TextEditingController();
   final _yearTextController = TextEditingController();
   final _licensePlateTextController = TextEditingController();
   final _vinTextController = TextEditingController();
+
+  VehicleEditPageState(this.vehicleId);
 
   Widget _buildVehiclePhotoForm() {
     return Column(
