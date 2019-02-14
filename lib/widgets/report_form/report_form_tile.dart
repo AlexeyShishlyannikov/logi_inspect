@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ReportFormTile extends StatelessWidget {
-  // final ReportForm reportForm;
-  // ReportFormTile({
-  // @required this.reportForm,
-  // });
+  final String reportFormId;
+  final void Function() onSelect;
+
+  ReportFormTile({
+    this.reportFormId,
+    this.onSelect,
+  });
 
   Widget _buildReportFormImage() {
     return CircleAvatar(
@@ -42,6 +45,7 @@ class ReportFormTile extends StatelessWidget {
           title: _buildReportFormCardTitle(),
           subtitle: _buildReportFormStatsText(),
           trailing: _buildSelectButton(),
+          onTap: onSelect,
         ),
         Divider(),
       ],

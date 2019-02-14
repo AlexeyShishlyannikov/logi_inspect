@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:logisticsinspect/models/vehicle.dart';
 
 class VehicleTile extends StatelessWidget {
-  // final Vehicle vehicle;
-  // VehicleTile({
-  // @required this.vehicle,
-  // });
+  final String vehicleId;
+  final void Function() onSelected;
+  
+  VehicleTile({
+    this.vehicleId,
+    this.onSelected,
+  });
 
   Widget _buildVehicleImage() {
     return CircleAvatar(
@@ -24,10 +26,7 @@ class VehicleTile extends StatelessWidget {
   }
 
   Widget _buildSelectButton() {
-    return IconButton(
-      icon: Icon(Icons.chevron_right),
-      onPressed: () {},
-    );
+    return Icon(Icons.chevron_right);
   }
 
   @override
@@ -39,6 +38,7 @@ class VehicleTile extends StatelessWidget {
           title: _buildVehicleCardTitle(),
           subtitle: _buildVehicleStatsText(),
           trailing: _buildSelectButton(),
+          onTap: onSelected,
         ),
         Divider(),
       ],

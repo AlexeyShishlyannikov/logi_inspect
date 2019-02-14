@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class DriverTile extends StatelessWidget {
-  // final Driver driver;
-  // DriverTile({
-  // @required this.driver,
-  // });
+  final void Function() onSelect;
+  final String driverId;
+
+  DriverTile({
+    this.onSelect,
+    this.driverId,
+  });
 
   Widget _buildDriverImage() {
     return CircleAvatar(
@@ -29,10 +32,7 @@ class DriverTile extends StatelessWidget {
   }
 
   Widget _buildSelectButton() {
-    return IconButton(
-      icon: Icon(Icons.chevron_right),
-      onPressed: () {},
-    );
+    return Icon(Icons.chevron_right);
   }
 
   @override
@@ -44,6 +44,7 @@ class DriverTile extends StatelessWidget {
           title: _buildDriverCardTitle(),
           subtitle: _buildDriverStatsText(),
           trailing: _buildSelectButton(),
+          onTap: onSelect,
         ),
         Divider(),
       ],

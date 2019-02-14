@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ReportFormInputBuildPage extends StatelessWidget {
+  final String inputId;
+
   final _formKey = GlobalKey<FormState>();
   final _nameTextController = TextEditingController();
   final _descriptionTextController = TextEditingController();
+
+  ReportFormInputBuildPage(this.inputId);
 
   Widget _buildNameTextField() {
     return TextFormField(

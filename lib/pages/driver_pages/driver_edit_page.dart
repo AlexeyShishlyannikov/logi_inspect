@@ -80,6 +80,7 @@ class DriverEditPageState extends State<DriverEditPage> {
   void _submitForm() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
+      Navigator.pop(context);
     }
   }
 

@@ -13,11 +13,14 @@ class VehiclesPage extends StatelessWidget {
     );
   }
 
-
   Widget _buildVehicleCard(BuildContext context, int index) {
     return Container(
       padding: EdgeInsets.all(10.0),
-      child: VehicleTile(),
+      child: VehicleTile(
+        onSelected: () {
+          Navigator.pushNamed(context, '/vehicles/view/' + index.toString());
+        },
+      ),
     );
   }
 

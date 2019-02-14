@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ReportTile extends StatelessWidget {
+  final String reportId;
+  final void Function() onSelect;
+
+  ReportTile({
+    this.reportId,
+    this.onSelect,
+  });
+
   Widget _buildReportImage() {
     return CircleAvatar(
       child: Icon(Icons.receipt),
@@ -24,10 +32,7 @@ class ReportTile extends StatelessWidget {
   }
 
   Widget _buildSelectButton() {
-    return IconButton(
-      icon: Icon(Icons.chevron_right),
-      onPressed: () {},
-    );
+    return Icon(Icons.chevron_right);
   }
 
   @override
@@ -39,6 +44,7 @@ class ReportTile extends StatelessWidget {
           title: _buildReportCardTitle(),
           subtitle: _buildReportStatsText(),
           trailing: _buildSelectButton(),
+          onTap: onSelect,
         ),
         Divider(),
       ],

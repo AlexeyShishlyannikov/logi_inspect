@@ -34,6 +34,9 @@ class TeamsPage extends StatelessWidget {
           title: Text('Team Name'),
           subtitle: _buildTeamCardStats(),
           trailing: Icon(Icons.keyboard_arrow_right),
+          onTap: () {
+            Navigator.pushNamed(context, '/teams/view/' + 1.toString());
+          },
         ),
         Divider(),
       ],

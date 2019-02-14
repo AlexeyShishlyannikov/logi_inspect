@@ -24,7 +24,9 @@ class DriverInvitePageState extends State<DriverInvitePage> {
   Widget _buildSubmitButton() {
     return RaisedButton(
       child: Text('Send invite'),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pop(context);
+      },
     );
   }
 

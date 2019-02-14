@@ -96,7 +96,9 @@ class ReportFormBuildPageState extends State<ReportFormBuildPage> {
                     Text('Add Input'),
                   ],
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/report-forms/input/');
+                },
               ),
               SizedBox(width: 10.0),
               RaisedButton(
@@ -116,7 +118,9 @@ class ReportFormBuildPageState extends State<ReportFormBuildPage> {
       children: <Widget>[
         RaisedButton(
           child: Text('Save'),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/report-forms');
+          },
         ),
       ],
     );

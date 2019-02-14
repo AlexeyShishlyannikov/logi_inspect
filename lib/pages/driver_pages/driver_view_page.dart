@@ -10,10 +10,7 @@ class DriverViewPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: CircleAvatar(
-        child: Text(
-          'PN',
-          style: TextStyle(fontSize: 50.0),
-        ),
+        child: Text('PN', style: TextStyle(fontSize: 50.0)),
         radius: MediaQuery.of(context).size.width / 6,
       ),
     );
@@ -30,19 +27,15 @@ class DriverViewPage extends StatelessWidget {
         SizedBox(height: 20.0),
         Column(
           children: <Widget>[
-            FlatButton(
-              child: ListTile(
-                title: Text('email@gmail.com'),
-                subtitle: Text('Email'),
-              ),
-              onPressed: () {},
+            ListTile(
+              title: Text('email@gmail.com'),
+              subtitle: Text('Email'),
+              onTap: () {},
             ),
-            FlatButton(
-              child: ListTile(
-                title: Text('1 (102) 232-3233'),
-                subtitle: Text('Phone'),
-              ),
-              onPressed: () {},
+            ListTile(
+              title: Text('1 (102) 232-3233'),
+              subtitle: Text('Phone'),
+              onTap: () {},
             ),
           ],
         )
@@ -50,7 +43,7 @@ class DriverViewPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDriverTeams() {
+  Widget _buildDriverTeams(BuildContext context) {
     return Column(
       children: <Widget>[
         Text('Teams', style: TextStyle(fontSize: 18.0)),
@@ -67,7 +60,9 @@ class DriverViewPage extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 10.0),
                 child: RaisedButton(
                   child: Text('Add Team'),
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigator.pushNamed(context, '/drivers');
+                  },
                 ),
               )),
           ),
@@ -76,7 +71,7 @@ class DriverViewPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDriverRecentReports() {
+  Widget _buildDriverRecentReports(BuildContext context) {
     return Column(
       children: <Widget>[
         Text('Reports', style: TextStyle(fontSize: 18.0)),
@@ -88,7 +83,9 @@ class DriverViewPage extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 10.0),
                 child: RaisedButton(
                   child: Text('See more'),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/drivers');
+                  },
                 ),
               )),
           ),
@@ -112,9 +109,9 @@ class DriverViewPage extends StatelessWidget {
           _buildDriverImage(context),
           _buildDriverInfo(),
           SizedBox(height: 10.0),
-          _buildDriverTeams(),
+          _buildDriverTeams(context),
           SizedBox(height: 10.0),
-          _buildDriverRecentReports(),
+          _buildDriverRecentReports(context),
           _buildDriverActionItems(),
         ],
       ),

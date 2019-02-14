@@ -41,6 +41,13 @@ class TeamEditPageState extends State<TeamEditPage> {
             onSaved: (String input) {},
             validator: (String input) {},
           ),
+          SizedBox(height: 10.0),
+          RaisedButton(
+            child: Text('Save'),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )
         ],
       ),
     );
@@ -56,7 +63,9 @@ class TeamEditPageState extends State<TeamEditPage> {
               Text('# Managers'),
               RaisedButton(
                 child: Text('Edit managers'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/drivers');
+                },
               )
             ],
           ),
@@ -75,7 +84,9 @@ class TeamEditPageState extends State<TeamEditPage> {
               Text('# Drivers'),
               RaisedButton(
                 child: Text('Edit drivers'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/drivers');
+                },
               )
             ],
           ),
@@ -94,7 +105,9 @@ class TeamEditPageState extends State<TeamEditPage> {
               Text('# Vehicles'),
               RaisedButton(
                 child: Text('Edit drivers'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/drivers');
+                },
               )
             ],
           ),

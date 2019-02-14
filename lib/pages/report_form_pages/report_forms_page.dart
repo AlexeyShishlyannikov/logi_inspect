@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:logisticsinspect/widgets/report_form/report_form_tile.dart';
 
 class ReportFormsPage extends StatelessWidget {
-  Widget _buildReportFormTile() {
-    return FlatButton(
-      child: ReportFormTile(),
-      onPressed: () {},
-    );
+  Widget _buildReportFormTile(BuildContext context) {
+    return ReportFormTile(onSelect: () {
+      Navigator.pushNamed(context, '/report-forms/view/' + 1.toString());
+    },);
   }
 
-  List<Widget> _getReportFormTiles() {
-    return List.generate(3, (_) => _buildReportFormTile());
+  List<Widget> _getReportFormTiles(BuildContext context) {
+    return List.generate(3, (_) => _buildReportFormTile(context));
   }
 
-  List<Widget> _getArchivedReportFormTiles() {
-    return List.generate(1, (_) => _buildReportFormTile());
+  List<Widget> _getArchivedReportFormTiles(BuildContext context) {
+    return List.generate(1, (_) => _buildReportFormTile(context));
   }
 
   Widget _buildReportFormsActionItems() {
@@ -39,7 +38,7 @@ class ReportFormsPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.0),
-              Column(children: _getReportFormTiles()),
+              Column(children: _getReportFormTiles(context)),
             ],
           ),
           Column(
@@ -58,7 +57,7 @@ class ReportFormsPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 10.0),
-              Column(children: _getArchivedReportFormTiles()),
+              Column(children: _getArchivedReportFormTiles(context)),
             ],
           ),
           _buildReportFormsActionItems(),

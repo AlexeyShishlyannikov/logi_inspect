@@ -23,7 +23,7 @@ class TeamViewPage extends StatelessWidget {
     );
   }
 
-  Widget _buildPeopleSection() {
+  Widget _buildPeopleSection(BuildContext context) {
     return Column(
       children: <Widget>[
         Text(
@@ -41,7 +41,9 @@ class TeamViewPage extends StatelessWidget {
               )..add(
                   FlatButton(
                     child: Text('See More'),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/drivers');
+                    },
                   ),
                 ),
             ),
@@ -51,7 +53,7 @@ class TeamViewPage extends StatelessWidget {
     );
   }
 
-  Widget _buildTeamReportsSection() {
+  Widget _buildTeamReportsSection(BuildContext context) {
     return Column(
       children: <Widget>[
         Text(
@@ -69,7 +71,9 @@ class TeamViewPage extends StatelessWidget {
               )..add(
                   FlatButton(
                     child: Text('See More'),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/reports');
+                    },
                   ),
                 ),
             ),
@@ -79,7 +83,7 @@ class TeamViewPage extends StatelessWidget {
     );
   }
 
-  Widget _buildTeamVehiclesSection() {
+  Widget _buildTeamVehiclesSection(BuildContext context) {
     return Column(
       children: <Widget>[
         Text(
@@ -97,7 +101,9 @@ class TeamViewPage extends StatelessWidget {
               )..add(
                   FlatButton(
                     child: Text('See More'),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/vehicles');
+                    },
                   ),
                 ),
             ),
@@ -107,7 +113,7 @@ class TeamViewPage extends StatelessWidget {
     );
   }
 
-  Widget _buildReportFormSection() {
+  Widget _buildReportFormSection(BuildContext context) {
     return Column(
       children: <Widget>[
         Text(
@@ -125,7 +131,9 @@ class TeamViewPage extends StatelessWidget {
               )..add(
                   FlatButton(
                     child: Text('See More'),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/report-forms');
+                    },
                   ),
                 ),
             ),
@@ -155,13 +163,13 @@ class TeamViewPage extends StatelessWidget {
                   child: _buildTeamModelSection(),
                 ),
                 SizedBox(height: 10.0),
-                _buildPeopleSection(),
+                _buildPeopleSection(context),
                 SizedBox(height: 10.0),
-                _buildTeamVehiclesSection(),
+                _buildTeamVehiclesSection(context),
                 SizedBox(height: 10.0),
-                _buildTeamReportsSection(),
+                _buildTeamReportsSection(context),
                 SizedBox(height: 10.0),
-                _buildReportFormSection(),
+                _buildReportFormSection(context),
               ],
             ),
           ),

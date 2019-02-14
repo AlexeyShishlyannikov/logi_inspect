@@ -3,7 +3,11 @@ import 'package:logisticsinspect/widgets/driver/driver_tile.dart';
 
 class DriversPage extends StatelessWidget {
   Widget _buildDriverTile(BuildContext context, int index) {
-    return DriverTile();
+    return DriverTile(
+      onSelect: () {
+        Navigator.pushNamed(context, '/drivers/view/' + index.toString());
+      },
+    );
   }
 
   Widget _buildDriverActionItems() {

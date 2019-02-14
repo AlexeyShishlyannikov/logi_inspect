@@ -13,6 +13,7 @@ class VehicleEditPage extends StatefulWidget {
 
 class VehicleEditPageState extends State<VehicleEditPage> {
   final String vehicleId;
+
   final _formKey = GlobalKey<FormState>();
   final _nameTextController = TextEditingController();
   final _yearTextController = TextEditingController();
@@ -118,6 +119,15 @@ class VehicleEditPageState extends State<VehicleEditPage> {
     );
   }
 
+  Widget _buildSubmitButton() {
+    return RaisedButton(
+      child: Text('Save'),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+  }
+
   Widget _buildVehicleActionItems() {
     return Container();
   }
@@ -134,6 +144,7 @@ class VehicleEditPageState extends State<VehicleEditPage> {
           children: <Widget>[
             _buildVehiclePhotoForm(),
             _buildVehicleModelForm(),
+            _buildSubmitButton(),
             _buildVehicleActionItems(),
           ],
         ),

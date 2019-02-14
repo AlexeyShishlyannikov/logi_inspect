@@ -62,7 +62,11 @@ class ReportsPageState extends State<ReportsPage> {
   Widget _buildReportCard(BuildContext context, int index) {
     return Container(
       padding: EdgeInsets.all(10.0),
-      child: ReportTile(),
+      child: ReportTile(
+        onSelect: () {
+          Navigator.pushNamed(context, '/reports/view/' + index.toString());
+        },
+      ),
     );
   }
 

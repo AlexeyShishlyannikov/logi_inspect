@@ -15,10 +15,7 @@ class VehicleViewPage extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             'Vehicle name',
-            style: TextStyle(
-              fontSize: 22.0,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
           ),
         ),
         SizedBox(height: 10.0),
@@ -43,7 +40,7 @@ class VehicleViewPage extends StatelessWidget {
     );
   }
 
-  Widget _buildReportsTile() {
+  Widget _buildReportsTile(BuildContext context) {
     return Column(
       children: <Widget>[
         Text(
@@ -62,7 +59,9 @@ class VehicleViewPage extends StatelessWidget {
               ),
               RaisedButton(
                 child: Text('See Reports'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/reports');
+                },
               )
             ],
           ),
@@ -90,7 +89,7 @@ class VehicleViewPage extends StatelessWidget {
               children: <Widget>[
                 _buildVehicleInfo(),
                 SizedBox(height: 10.0),
-                _buildReportsTile(),
+                _buildReportsTile(context),
                 _buildVehicleActionItems(),
               ],
             ),

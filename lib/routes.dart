@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
 
 import 'package:logisticsinspect/pages/auth_pages/auth_page.dart';
+import 'package:logisticsinspect/pages/auth_pages/auth_reset_password_page.dart';
+import 'package:logisticsinspect/pages/auth_pages/auth_accept_invite_page.dart';
+import 'package:logisticsinspect/pages/auth_pages/auth_change_password.dart';
 
 import 'package:logisticsinspect/pages/dashboard_pages/dashboard_page.dart';
+
+import 'package:logisticsinspect/pages/driver_pages/drivers_page.dart';
 import 'package:logisticsinspect/pages/driver_pages/driver_edit_page.dart';
 import 'package:logisticsinspect/pages/driver_pages/driver_view_page.dart';
 
-import 'package:logisticsinspect/pages/driver_pages/drivers_page.dart';
 import 'package:logisticsinspect/pages/report_form_pages/report_form_build_page.dart';
-import 'package:logisticsinspect/pages/report_pages/report_edit_page.dart';
-import 'package:logisticsinspect/pages/report_pages/report_view_page.dart';
+import 'package:logisticsinspect/pages/report_form_pages/report_form_input_build_page.dart';
+import 'package:logisticsinspect/pages/report_form_pages/report_forms_page.dart';
 
 import 'package:logisticsinspect/pages/report_pages/reports_page.dart';
+import 'package:logisticsinspect/pages/report_pages/report_view_page.dart';
+import 'package:logisticsinspect/pages/report_pages/report_edit_page.dart';
 
-import 'package:logisticsinspect/pages/report_form_pages/report_forms_page.dart';
+import 'package:logisticsinspect/pages/team_pages/teams_page.dart';
 import 'package:logisticsinspect/pages/team_pages/team_edit_page.dart';
 import 'package:logisticsinspect/pages/team_pages/team_view_page.dart';
 
-import 'package:logisticsinspect/pages/team_pages/teams_page.dart';
-import 'package:logisticsinspect/pages/vehicle_pages/vehicle_edit_page.dart';
 
 import 'package:logisticsinspect/pages/vehicle_pages/vehicles_page.dart';
+import 'package:logisticsinspect/pages/vehicle_pages/vehicle_edit_page.dart';
 import 'package:logisticsinspect/pages/vehicle_pages/vehicle_view_page.dart';
 
 Map<String, WidgetBuilder> appRoutes = {
@@ -28,7 +33,7 @@ Map<String, WidgetBuilder> appRoutes = {
   '/auth': (BuildContext context) => AuthPage(),
   '/vehicles': (BuildContext context) => VehiclesPage(),
   '/teams': (BuildContext context) => TeamsPage(),
-  '/report': (BuildContext context) => ReportsPage(),
+  '/reports': (BuildContext context) => ReportsPage(),
   '/report-forms': (BuildContext context) => ReportFormsPage(),
   '/drivers': (BuildContext context) => DriversPage(),
 };
@@ -60,7 +65,7 @@ Route<dynamic> appRouteGenerator(RouteSettings settings) {
         builder: (BuildContext context) => TeamEditPage(teamId),
       );
     }
-  } else if (pathElements[1] == 'report') {
+  } else if (pathElements[1] == 'reports') {
     final String reportId = pathElements[3];
     if (pathElements[2] == 'view') {
       return MaterialPageRoute<bool>(
@@ -81,6 +86,10 @@ Route<dynamic> appRouteGenerator(RouteSettings settings) {
       return MaterialPageRoute<bool>(
         builder: (BuildContext context) => ReportFormBuildPage(reportFormId),
       );
+    } else if (pathElements[2] == 'input') {
+      return MaterialPageRoute<bool>(
+        builder: (BuildContext context) => ReportFormInputBuildPage(reportFormId),
+      );
     }
   } else if (pathElements[1] == 'drivers') {
     final String driverId = pathElements[3];
@@ -94,10 +103,20 @@ Route<dynamic> appRouteGenerator(RouteSettings settings) {
       );
     }
   } else if (pathElements[1] == 'auth') {
-    // final String reportId = pathElements[3];
-    // return MaterialPageRoute<bool>(
-    //   builder: (BuildContext context) => ReportViewPage(reportId),
-    // );
+    final String authMode = pathElements[2];
+    return MaterialPageRoute<bool>(
+      builder: (BuildContext context) {
+        if (authMode == 'login') {
+          return AuthPage();
+        } else if (authMode == 'accept-invite') {
+          return AuthAcceptInvitePage();
+        } else if (authMode == 'change-password') {
+          return AuthChangePasswordPage();
+        } else if (authMode == 'reset-password') {
+          return AuthResetPasswordPage();
+        }
+      },
+    );
   }
   return null;
 }
