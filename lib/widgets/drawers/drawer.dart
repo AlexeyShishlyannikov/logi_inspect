@@ -11,6 +11,13 @@ class AppDrawer extends StatelessWidget {
             title: Text('Company Name'),
           ),
           ListTile(
+            leading: Icon(Icons.dashboard),
+            title: Text('Dashboard'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/dashboard');
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.format_list_numbered),
             title: Text('Forms'),
             onTap: () {

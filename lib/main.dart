@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_thunk/redux_thunk.dart';
 
 import 'package:logisticsinspect/pages/dashboard_pages/dashboard_page.dart';
 import 'package:logisticsinspect/routes.dart';
@@ -18,7 +19,10 @@ class MyApp extends StatelessWidget {
     final Store<AppState> store = Store<AppState>(
       appStateReducer,
       initialState: AppState.initialState(),
-      middleware: [appStateMiddleware],
+      middleware: [
+        appStateMiddleware,
+        thunkMiddleware
+      ],
     );
 
     return StoreProvider<AppState>(
