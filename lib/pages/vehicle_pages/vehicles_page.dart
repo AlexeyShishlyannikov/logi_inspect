@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/drawers/drawer.dart';
 import 'package:logisticsinspect/widgets/vehicle/vehicle_tile.dart';
 
 class VehiclesPage extends StatelessWidget {
@@ -30,6 +31,7 @@ class VehiclesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Vehicles'),
       ),
+      drawer: AppDrawer(),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
         child: Column(

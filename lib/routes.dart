@@ -6,6 +6,7 @@ import 'package:logisticsinspect/pages/auth_pages/auth_accept_invite_page.dart';
 import 'package:logisticsinspect/pages/auth_pages/auth_change_password.dart';
 
 import 'package:logisticsinspect/pages/dashboard_pages/dashboard_page.dart';
+import 'package:logisticsinspect/pages/driver_pages/driver_invite_page.dart';
 
 import 'package:logisticsinspect/pages/driver_pages/drivers_page.dart';
 import 'package:logisticsinspect/pages/driver_pages/driver_edit_page.dart';
@@ -22,7 +23,6 @@ import 'package:logisticsinspect/pages/report_pages/report_edit_page.dart';
 import 'package:logisticsinspect/pages/team_pages/teams_page.dart';
 import 'package:logisticsinspect/pages/team_pages/team_edit_page.dart';
 import 'package:logisticsinspect/pages/team_pages/team_view_page.dart';
-
 
 import 'package:logisticsinspect/pages/vehicle_pages/vehicles_page.dart';
 import 'package:logisticsinspect/pages/vehicle_pages/vehicle_edit_page.dart';
@@ -88,11 +88,12 @@ Route<dynamic> appRouteGenerator(RouteSettings settings) {
       );
     } else if (pathElements[2] == 'input') {
       return MaterialPageRoute<bool>(
-        builder: (BuildContext context) => ReportFormInputBuildPage(reportFormId),
+        builder: (BuildContext context) =>
+            ReportFormInputBuildPage(reportFormId),
       );
     }
   } else if (pathElements[1] == 'drivers') {
-    final String driverId = pathElements[3];
+    final String driverId = pathElements.length == 4 ? pathElements[3] : null;
     if (pathElements[2] == 'view') {
       return MaterialPageRoute<bool>(
         builder: (BuildContext context) => DriverViewPage(driverId),
@@ -100,6 +101,10 @@ Route<dynamic> appRouteGenerator(RouteSettings settings) {
     } else if (pathElements[2] == 'edit') {
       return MaterialPageRoute<bool>(
         builder: (BuildContext context) => DriverEditPage(driverId),
+      );
+    } else if (pathElements[2] == 'invite') {
+      return MaterialPageRoute<bool>(
+        builder: (BuildContext context) => DriverInvitePage(),
       );
     }
   } else if (pathElements[1] == 'auth') {

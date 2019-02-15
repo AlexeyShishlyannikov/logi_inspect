@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/drawers/drawer.dart';
 
 class TeamsPage extends StatelessWidget {
   Widget _buildSearchBox() {
@@ -53,6 +54,7 @@ class TeamsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Teams'),
       ),
+      drawer: AppDrawer(),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
         child: Column(

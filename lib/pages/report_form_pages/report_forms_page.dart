@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/drawers/drawer.dart';
 import 'package:logisticsinspect/widgets/report_form/report_form_tile.dart';
 
 class ReportFormsPage extends StatelessWidget {
   Widget _buildReportFormTile(BuildContext context) {
     return ReportFormTile(onSelect: () {
-      Navigator.pushNamed(context, '/report-forms/view/' + 1.toString());
+      Navigator.pushNamed(context, '/report-forms/edit/' + 1.toString());
     },);
   }
 
@@ -26,6 +27,7 @@ class ReportFormsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Forms'),
       ),
+      drawer: AppDrawer(),
       body: ListView(
         children: <Widget>[
           Column(

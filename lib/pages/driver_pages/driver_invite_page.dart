@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/drawers/drawer.dart';
 
 class DriverInvitePage extends StatefulWidget {
   @override
@@ -36,6 +37,7 @@ class DriverInvitePageState extends State<DriverInvitePage> {
       appBar: AppBar(
         title: Text('Invite Driver'),
       ),
+      drawer: AppDrawer(),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
         child: Column(

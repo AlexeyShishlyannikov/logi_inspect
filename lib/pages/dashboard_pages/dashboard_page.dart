@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/drawers/drawer.dart';
 
 class DashboardPage extends StatelessWidget {
   Widget _buildTeamsDashboardTile(BuildContext context) {
@@ -52,6 +53,7 @@ class DashboardPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Dashboard'),
       ),
+      drawer: AppDrawer(),
       body: ListView(
         children: <Widget>[
           _buildTeamsDashboardTile(context),

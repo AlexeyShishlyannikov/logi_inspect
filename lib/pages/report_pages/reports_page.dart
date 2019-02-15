@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/drawers/drawer.dart';
 import 'package:logisticsinspect/widgets/report/report_tile.dart';
 
 class ReportsPage extends StatefulWidget {
@@ -76,6 +77,7 @@ class ReportsPageState extends State<ReportsPage> {
       appBar: AppBar(
         title: Text('Reports'),
       ),
+      drawer: AppDrawer(),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
         child: Column(

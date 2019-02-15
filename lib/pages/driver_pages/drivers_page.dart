@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/drawers/drawer.dart';
 import 'package:logisticsinspect/widgets/driver/driver_tile.dart';
 
 class DriversPage extends StatelessWidget {
@@ -20,6 +21,7 @@ class DriversPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Drivers'),
       ),
+      drawer: AppDrawer(),
       body: Column(
         children: <Widget>[
           Expanded(
