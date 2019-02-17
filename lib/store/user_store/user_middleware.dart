@@ -1,12 +1,14 @@
-import 'package:logisticsinspect/store/store_model.dart';
-import 'package:logisticsinspect/store/user_store/user_store.dart';
-import './user_actions.dart';
-
 import 'dart:convert';
 import 'dart:async';
 
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:logisticsinspect/store/store_model.dart';
+import 'package:logisticsinspect/store/user_store/user_store.dart';
+
+import './user_actions.dart';
+import './user_thunk_actions.dart';
 
 void saveToPrefs(UserState state) async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -32,7 +34,9 @@ void userStateMiddleware(
     saveToPrefs(store.state.userState);
   }
 
-  if (action is LoginUserAction || action is RegisterUserAction) {
-    await loadFromPrefs().then((state) => store.dispatch(LoadedUserAction(state.user)));
-  }
+  if (action is LoginUserAction) loginUser(action);
+  if (action is RegisterUserAction) registerUser(action);
+  if (action is RegisterCompanyAction) registerCompany(action);
+  if (action is ChangePasswordAction) changePassword(action);
+  if (action is ForgotPasswordAction) forgotPassword(action);
 }
