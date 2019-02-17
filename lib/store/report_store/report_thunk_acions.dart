@@ -46,7 +46,7 @@ ThunkAction<ReportState> getReport = (Store<ReportState> store) async {
 
 ThunkAction<ReportState> getReports = (Store<ReportState> store) async {
   http.Response response =
-      await http.get(Uri.encodeFull(apiUrl + 'report/getreports'));
+      await http.get(Uri.encodeFull(apiUrl + 'report/getReports'));
   List<Map> jsonList = json.decode(response.body);
   List<Report> returnedreports =
       jsonList.map((reportJson) => Report.fromJson(json.decode(response.body)));

@@ -10,10 +10,24 @@ import 'package:http/http.dart' as http;
 
 import './report_form_actions.dart';
 
+ThunkAction<ReportFormState> addReportForm = (Store<ReportFormState> store) async {
+  Map selectedreportFormJson = store.state.selectedReportForm.toJson();
+  http.Response response = await http.post(
+    Uri.encodeFull(apiUrl + 'form/add'),
+    body: selectedreportFormJson,
+  );
+  ReportForm returnedReportForm = ReportForm.fromJson(json.decode(response.body));
+  List<ReportForm> reportForms = List.from(store.state.reportForms);
+  store.dispatch(LoadedFormsAction(
+    reportForms.map(
+        (reportForm) => reportForm.id == returnedReportForm.id ? returnedReportForm : reportForm),
+  ));
+};
+
 ThunkAction<ReportFormState> updateReportForm = (Store<ReportFormState> store) async {
   Map selectedreportFormJson = store.state.selectedReportForm.toJson();
   http.Response response = await http.put(
-    Uri.encodeFull(apiUrl + 'reportForm/update'),
+    Uri.encodeFull(apiUrl + 'form/update'),
     body: selectedreportFormJson,
   );
   ReportForm returnedReportForm = ReportForm.fromJson(json.decode(response.body));
@@ -27,7 +41,7 @@ ThunkAction<ReportFormState> updateReportForm = (Store<ReportFormState> store) a
 ThunkAction<ReportFormState> deleteReportForm = (Store<ReportFormState> store) async {
   http.Response response = await http.delete(
     Uri.encodeFull(
-        apiUrl + 'reportForm/delete/' + store.state.selectedReportForm.id.toString()),
+        apiUrl + 'form/delete/' + store.state.selectedReportForm.id.toString()),
   );
   String deletedId = json.decode(response.body);
   store.dispatch(SelectFormAction(null));
@@ -39,14 +53,14 @@ ThunkAction<ReportFormState> deleteReportForm = (Store<ReportFormState> store) a
 
 ThunkAction<ReportFormState> getReportForm = (Store<ReportFormState> store) async {
   http.Response response =
-      await http.get(Uri.encodeFull(apiUrl + 'reportForm/get'));
+      await http.get(Uri.encodeFull(apiUrl + 'form/get'));
   ReportForm returnedreportForm = ReportForm.fromJson(json.decode(response.body));
   store.dispatch(SelectFormAction(returnedreportForm));
 };
 
 ThunkAction<ReportFormState> getReportForms = (Store<ReportFormState> store) async {
   http.Response response =
-      await http.get(Uri.encodeFull(apiUrl + 'reportForm/getreportForms'));
+      await http.get(Uri.encodeFull(apiUrl + 'form/getreportForms'));
   List<Map> jsonList = json.decode(response.body);
   List<ReportForm> returnedreportForms =
       jsonList.map((reportFormJson) => ReportForm.fromJson(json.decode(response.body)));

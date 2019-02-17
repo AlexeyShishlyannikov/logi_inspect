@@ -12,7 +12,7 @@ import './company_actions.dart';
 
 ThunkAction<CompanyState> getCompany = (Store<CompanyState> store) async {
   http.Response response =
-      await http.get(Uri.encodeFull(apiUrl + 'company'));
+      await http.get(Uri.encodeFull(apiUrl + 'companies'));
   Company returnedCompany = Company.fromJson(json.decode(response.body));
   store.dispatch(CompanyLoadedAction(company: returnedCompany));
 };
