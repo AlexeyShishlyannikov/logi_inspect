@@ -3,14 +3,16 @@ import 'package:flutter/foundation.dart';
 class Vehicle {
   final String id;
   final String licensePlate;
-  final String modelId;
+  final VehicleMake make;
+  final VehicleModel model;
   final String name;
   final int year;
 
   Vehicle({
     @required this.id,
     @required this.name,
-    @required this.modelId,
+    @required this.make,
+    @required this.model,
     @required this.licensePlate,
     @required this.year,
   });
@@ -18,14 +20,16 @@ class Vehicle {
   Vehicle copyWith({
     String id,
     String licensePlate,
-    String modelId,
+    VehicleMake make,
+    VehicleModel model,
     String name,
     int year,
   }) {
     return Vehicle(
       id: id ?? this.id,
       name: name ?? this.name,
-      modelId: modelId ?? this.modelId,
+      make: make ?? this.make,
+      model: model ?? this.model,
       licensePlate: licensePlate ?? this.licensePlate,
       year: year ?? this.year,
     );
@@ -34,13 +38,15 @@ class Vehicle {
   Vehicle.fromJson(Map json)
       : id = json['id'],
         name = json['name'],
-        modelId = json['model_id'],
+        make = json['make'],
+        model = json['model'],
         licensePlate = json['license_plate'],
         year = json['year'];
 
   Map toJson() => {
         'name': name,
-        'model_id': modelId,
+        'make': make,
+        'model': model,
         'license_plate': licensePlate,
         'year': year,
       };
@@ -68,11 +74,12 @@ class VehicleModel {
     );
   }
 
-  VehicleModel.fromJson(String id, Map json)
-      : id = id,
+  VehicleModel.fromJson(Map json)
+      : id = json['id'],
         name = json['name'];
 
   Map toJson() => {
+        'id': id,
         'name': name,
       };
 
@@ -84,33 +91,42 @@ class VehicleMake {
   final String id;
   final String logoUri;
   final String name;
+  final List<VehicleModel> models;
 
   VehicleMake({
     @required this.id,
     @required this.name,
     @required this.logoUri,
+    this.models,
   });
 
   VehicleMake copyWith({
     String id,
     String name,
     String logoUri,
+    List<VehicleModel> models,
   }) {
     return VehicleMake(
       id: id ?? this.id,
       name: name ?? this.name,
       logoUri: logoUri ?? this.logoUri,
+      models: models ?? this.models,
     );
   }
 
-  VehicleMake.fromJson(String id, Map json)
-      : id = id,
+  VehicleMake.fromJson(Map json)
+      : id = json['id'],
         name = json['name'],
-        logoUri = json['logo_uri'];
+        logoUri = json['logo_uri'],
+        models = (json['models'] as List)
+            .map((model) => VehicleModel.fromJson(model))
+            .toList();
 
   Map toJson() => {
+        'id': id,
         'name': name,
         'logo_uri': logoUri,
+        'models': models.map((model) => model.toJson()).toList(),
       };
 
   @override

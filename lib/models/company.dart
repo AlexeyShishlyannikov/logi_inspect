@@ -27,18 +27,19 @@ class Company {
     );
   }
 
-  Company.fromJson(String id, Map json)
+  Company.fromJson(Map json)
       : logoUri = json['logo_uri'],
-        id = id,
+        id = json['id'],
         name = json['name'],
         userId = json['userId'];
 
   Map toJson() => {
+        'id': id,
         'logo_uri': logoUri,
         'name': name,
-        'userId': userId
+        'userId': userId,
       };
-  
+
   @override
   String toString() => toJson().toString();
 }

@@ -1,16 +1,30 @@
 import 'package:logisticsinspect/models/report_form.dart';
 
 class ReportFormState {
-  final ReportForm reportForm;
+  final ReportForm selectedReportForm;
+  final List<ReportForm> reportForms;
 
   ReportFormState({
-    this.reportForm,
+    this.selectedReportForm,
+    this.reportForms,
   });
 
-  ReportFormState.initialState() : reportForm = null;
+  ReportFormState.initialState()
+      : selectedReportForm = null,
+        reportForms = [];
 
   ReportFormState.fromJson(Map json)
-      : reportForm = ReportForm.fromJson(json['reportForm']);
+      : selectedReportForm = ReportForm.fromJson(json['reportForm']),
+        reportForms = (json['reportForms'] as List)
+            .map((reportForm) => ReportForm.fromJson(reportForm))
+            .toList();
 
-  Map toJson() => {'reportForm': reportForm.toJson()};
+  Map toJson() => {
+        'reportForm': selectedReportForm.toJson(),
+        'reportForms':
+            reportForms.map((reportForm) => reportForm.toJson()).toList(),
+      };
+
+  @override
+  String toString() => this.toJson().toString();
 }

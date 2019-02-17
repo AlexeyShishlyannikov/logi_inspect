@@ -32,12 +32,18 @@ void reportFormStateMiddleware(
   if (action is AddReportFormAction ||
       action is AddReportFormFieldAction ||
       action is RemoveFormAction ||
-      action is UpdateReportFormAction) {
+      action is UpdateReportFormAction ||
+      action is SelectFormAction) {
     saveToPrefs(store.state.reportFormState);
   }
 
   if (action is GetReportFormAction) {
     await loadFromPrefs()
-        .then((state) => store.dispatch(LoadedFormAction(state.reportForm)));
+        .then((state) => store.dispatch(LoadedFormAction(state.selectedReportForm)));
+  }
+
+  if (action is GetReportFormsAction) {
+    await loadFromPrefs()
+        .then((state) => store.dispatch(LoadedFormsAction(state.reportForms)));
   }
 }
