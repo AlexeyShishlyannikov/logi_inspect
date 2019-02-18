@@ -7,6 +7,7 @@ UserState userStateReducer(UserState state, action) {
     user: userReducer(state.user, action),
     token: tokenReducer(state.token, action),
     isAuthenticated: isAuthenticatedReducer(state.isAuthenticated, action),
+    isLoading: isLoadingReducer(state.isLoading, action),
   );
 }
 
@@ -17,16 +18,8 @@ User userReducer(User state, action) {
   if (action is RemoveUserAction) {
     return null;
   }
-
-  // move to middleware
-  if (action is LoginUserAction) {
-    return User(token: '');
-  }
-  if (action is RegisterUserAction) {
-    return User(token: '');
-  }
-  if (action is RefreshTokenAction) {
-    return User(token: '');
+  if (action is LoadedUserAction) {
+    return action.user;
   }
 
   return state;
@@ -44,8 +37,23 @@ AuthenticationToken tokenReducer(AuthenticationToken state, action) {
 }
 
 bool isAuthenticatedReducer(bool state, action) {
-  if (action is SetAuthenticationAction) {
-    return action.isAuthenticated;
+  if (action is LoadedUserAction) {
+    return true;
   }
+  if (action is RemoveUserAction || action is RemoveTokenDataAction) {
+    return false;
+  }
+  return state;
+}
+
+bool isLoadingReducer(bool state, action) {
+  if (action is StartLoadingAction) {
+    return true;
+  }
+
+  if (action is LoadedUserAction) {
+    return false;
+  }
+
   return state;
 }

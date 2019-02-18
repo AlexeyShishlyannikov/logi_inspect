@@ -33,10 +33,4 @@ void userStateMiddleware(
   if (action is AddUserAction || action is RemoveUserAction) {
     saveToPrefs(store.state.userState);
   }
-
-  if (action is LoginUserAction) loginUser(action);
-  if (action is RegisterUserAction) registerUser(action);
-  if (action is RegisterCompanyAction) registerCompany(action);
-  if (action is ChangePasswordAction) changePassword(action);
-  if (action is ForgotPasswordAction) forgotPassword(action);
 }

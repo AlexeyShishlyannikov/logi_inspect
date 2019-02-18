@@ -39,6 +39,7 @@ class RegisterUserAction {
   Map toJson() => {
         'email': email,
         'password': password,
+        'confirmPassword': password,
       };
 }
 
@@ -57,6 +58,7 @@ class RegisterCompanyAction {
         'companyName': companyName,
         'email': email,
         'password': password,
+        'confirmPassword': password,
       };
 }
 
@@ -118,6 +120,8 @@ class SetAuthenticationAction {
     @required this.isAuthenticated,
   });
 }
+
+class StartLoadingAction {}
 
 class LoadedUserAction {
   final User user;
