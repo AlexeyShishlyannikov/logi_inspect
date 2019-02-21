@@ -19,10 +19,7 @@ class MyApp extends StatelessWidget {
     final Store<AppState> store = Store<AppState>(
       appStateReducer,
       initialState: AppState.initialState(),
-      middleware: [
-        appStateMiddleware,
-        thunkMiddleware
-      ],
+      middleware: [appStateMiddleware, thunkMiddleware],
     );
 
     return StoreProvider<AppState>(
@@ -35,7 +32,8 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            initialRoute: store.state.userState.isAuthenticated ? '/' : '/auth/login',
+            initialRoute:
+                store.state.userState.isAuthenticated ? '/' : '/auth/login',
             routes: appRoutes,
             onGenerateRoute: appRouteGenerator,
             onUnknownRoute: (RouteSettings settings) {
@@ -49,30 +47,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class _ViewModel {
-//   final List<Item> items;
-//   final Function(String) onAddItem;
-//   final Function(Item) onRemoveItem;
-//   final Function() onRemoveItems;
-
-//   _ViewModel({
-//     this.items,
-//     this.onAddItem,
-//     this.onRemoveItem,
-//     this.onRemoveItems,
-//   });
-
-//   factory _ViewModel.create(Store<AppState> store) {
-//     _onAddItem(String body) => store.dispatch(AddItemAction(body));
-//     _onRemoveItem(Item item) => store.dispatch(RemoveItemAction(item));
-//     _onRemoveItems() => store.dispatch(RemoveItemsAction());
-
-//     return _ViewModel(
-//       items: store.state.items,
-//       onAddItem: _onAddItem,
-//       onRemoveItem: _onRemoveItem,
-//       onRemoveItems: _onRemoveItems,
-//     );
-//   }
-// }

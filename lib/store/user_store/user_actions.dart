@@ -1,16 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:logisticsinspect/models/user.dart';
 
-class AddUserAction {
-  final User user;
-  AddUserAction({
-    @required this.user,
-  });
-}
-
 class RefreshTokenAction {}
 
-class RemoveUserAction {}
+class LogoutAction {}
 
 class LoginUserAction {
   final String email;
@@ -104,15 +97,6 @@ class ChangePasswordAction {
         'oldPassword': oldPassword,
       };
 }
-
-class UpdateTokenDataAction {
-  final AuthenticationToken token;
-  UpdateTokenDataAction({
-    @required this.token,
-  });
-}
-
-class RemoveTokenDataAction {}
 
 class SetAuthenticationAction {
   final bool isAuthenticated;

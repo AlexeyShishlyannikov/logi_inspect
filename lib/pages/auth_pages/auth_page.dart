@@ -20,11 +20,8 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   final _emailTextController = TextEditingController();
-
   final _passwordTextController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
-
   AuthMode _authMode = AuthMode.Login;
 
   Widget _buildEmailTextFormField() {
@@ -76,7 +73,8 @@ class _AuthPageState extends State<AuthPage> {
       viewModel.login(_emailTextController.text, _passwordTextController.text);
     }
     if (_authMode == AuthMode.Register) {
-      viewModel.signUp(_emailTextController.text, _passwordTextController.text);
+      viewModel.register(
+          _emailTextController.text, _passwordTextController.text);
     }
   }
 
@@ -124,6 +122,11 @@ class _AuthPageState extends State<AuthPage> {
                               onPressed: () => _submitForm(viewModel),
                             );
                     },
+                    onDidChange: (viewModel) {
+                      if (viewModel.store.state.userState.isAuthenticated) {
+                        Navigator.pushReplacementNamed(context, '/dashvoard');
+                      }
+                    },
                   ),
                 ],
               ),
@@ -150,7 +153,7 @@ class _AuthViewModel {
         .dispatch(loginUser(LoginUserAction(email: email, password: password)));
   }
 
-  void signUp(String email, String password) {
+  void register(String email, String password) {
     store.dispatch(
         registerUser(RegisterUserAction(email: email, password: password)));
   }

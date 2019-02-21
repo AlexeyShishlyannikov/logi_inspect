@@ -14,13 +14,13 @@ class ReportFormState {
         reportForms = [];
 
   ReportFormState.fromJson(Map json)
-      : selectedReportForm = ReportForm.fromJson(json['reportForm']),
+      : selectedReportForm = ReportForm.fromJson(json['selectedReportForm']),
         reportForms = (json['reportForms'] as List)
             .map((reportForm) => ReportForm.fromJson(reportForm))
             .toList();
 
   Map toJson() => {
-        'reportForm': selectedReportForm.toJson(),
+        'selectedReportForm': selectedReportForm != null ? selectedReportForm.toJson() : null,
         'reportForms':
             reportForms.map((reportForm) => reportForm.toJson()).toList(),
       };

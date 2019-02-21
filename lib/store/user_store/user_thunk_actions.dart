@@ -14,11 +14,13 @@ ThunkAction<AppState> registerUser(RegisterUserAction action) =>
     (Store<AppState> store) async {
       store.dispatch(StartLoadingAction());
       http.Response response = await http.post(
-          Uri.encodeFull(apiUrl + 'account/register/user'),
-          body: json.encode(action.toJson()),
-          headers: {"Content-Type": "Application/json"});
-      print('Response' + response.body);
-      User returnedTokenUser = User(token: response.body);
+        Uri.encodeFull(apiUrl + 'account/register/user'),
+        body: json.encode(action.toJson()),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      );
+      User returnedTokenUser = User(response.body);
       store.dispatch(LoadedUserAction(returnedTokenUser));
     };
 
@@ -27,9 +29,12 @@ ThunkAction<AppState> registerCompany(RegisterCompanyAction action) =>
       store.dispatch(StartLoadingAction());
       http.Response response = await http.post(
         Uri.encodeFull(apiUrl + 'account/register/company'),
-        body: action.toJson(),
+        body: json.encode(action.toJson()),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       );
-      User returnedTokenUser = User(token: response.body);
+      User returnedTokenUser = User(response.body);
       store.dispatch(LoadedUserAction(returnedTokenUser));
     };
 
@@ -38,10 +43,12 @@ ThunkAction<AppState> loginUser(LoginUserAction action) =>
       store.dispatch(StartLoadingAction());
       http.Response response = await http.post(
         Uri.encodeFull(apiUrl + 'account/login'),
-        body: action.toJson(),
+        body: json.encode(action.toJson()),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       );
-      print('Response' + response.body);
-      User returnedTokenUser = User(token: response.body);
+      User returnedTokenUser = User(response.body);
       store.dispatch(LoadedUserAction(returnedTokenUser));
     };
 
@@ -50,7 +57,10 @@ ThunkAction<AppState> forgotPassword(ForgotPasswordAction action) =>
       store.dispatch(StartLoadingAction());
       http.Response response = await http.post(
         Uri.encodeFull(apiUrl + 'account/forgot'),
-        body: action.toJson(),
+        body: json.encode(action.toJson()),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       );
     };
 
@@ -59,9 +69,12 @@ ThunkAction<AppState> changePassword(ChangePasswordAction action) =>
       store.dispatch(StartLoadingAction());
       http.Response response = await http.post(
         Uri.encodeFull(apiUrl + 'account/change'),
-        body: action.toJson(),
+        body: json.encode(action.toJson()),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       );
-      User returnedTokenUser = User(token: response.body);
+      User returnedTokenUser = User(response.body);
       store.dispatch(LoadedUserAction(returnedTokenUser));
     };
 
@@ -70,8 +83,9 @@ ThunkAction<AppState> resetPassword(ResetPasswordAction action) =>
       store.dispatch(StartLoadingAction());
       http.Response response = await http.post(
         Uri.encodeFull(apiUrl + 'account/reset'),
-        body: action.toJson(),
+        body: json.encode(action.toJson()),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       );
-      User returnedTokenUser = User(token: response.body);
-      store.dispatch(LoadedUserAction(returnedTokenUser));
     };

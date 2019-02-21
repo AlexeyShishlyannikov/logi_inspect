@@ -21,6 +21,7 @@ class ReportState {
 
   Map toJson() => {
         'reports': reports.map((report) => report.toJson()),
-        'selectedReport': selectedReport.toJson(),
+        'selectedReport':
+            selectedReport != null ? selectedReport.toJson() : null,
       };
 }

@@ -1,29 +1,8 @@
-import 'package:logisticsinspect/store/report_form_store/report_form_store.dart';
+import 'package:logisticsinspect/store/middleware.dart';
 import 'package:logisticsinspect/store/store_model.dart';
 
 import './report_form_actions.dart';
-
-import 'dart:convert';
-import 'dart:async';
-
 import 'package:redux/redux.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-void saveToPrefs(ReportFormState state) async {
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  var string = json.encode(state.toJson());
-  await preferences.setString('reportFormState', string);
-}
-
-Future<ReportFormState> loadFromPrefs() async {
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  var string = preferences.getString('reportFormState');
-  if (string != null) {
-    Map map = json.decode(string);
-    return ReportFormState.fromJson(map);
-  }
-  return ReportFormState.initialState();
-}
 
 void reportFormStateMiddleware(
     Store<AppState> store, action, NextDispatcher next) async {
@@ -34,16 +13,16 @@ void reportFormStateMiddleware(
       action is RemoveFormAction ||
       action is UpdateReportFormAction ||
       action is SelectFormAction) {
-    saveToPrefs(store.state.reportFormState);
+    saveToPrefs(store.state);
   }
 
   if (action is GetReportFormAction) {
-    await loadFromPrefs()
-        .then((state) => store.dispatch(LoadedFormAction(state.selectedReportForm)));
+    await loadFromPrefs().then((state) => store
+        .dispatch(LoadedFormAction(state.reportFormState.selectedReportForm)));
   }
 
   if (action is GetReportFormsAction) {
-    await loadFromPrefs()
-        .then((state) => store.dispatch(LoadedFormsAction(state.reportForms)));
+    await loadFromPrefs().then((state) =>
+        store.dispatch(LoadedFormsAction(state.reportFormState.reportForms)));
   }
 }
