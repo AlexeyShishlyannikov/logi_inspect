@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 
 class Vehicle {
   final String id;
-  final String licensePlate;
+  final String name;
   final VehicleMake make;
   final VehicleModel model;
-  final String name;
+  final String licensePlate;
   final int year;
 
   Vehicle({

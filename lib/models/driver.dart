@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class Driver {
-  final int id;
+  final String id;
   final String firstName;
   final String lastName;
 
@@ -12,7 +12,7 @@ class Driver {
   });
 
   Driver copyWith({
-    int id,
+    String id,
     String firstName,
     String lastName,
   }) {

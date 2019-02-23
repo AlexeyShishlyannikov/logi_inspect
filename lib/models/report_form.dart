@@ -71,12 +71,14 @@ class ReportFormField {
   final String id;
   final String description;
   final String name;
+  final bool isRequired;
   final FormFieldType type;
 
   ReportFormField({
     @required this.id,
     @required this.description,
     @required this.name,
+    @required this.isRequired,
     @required this.type,
   });
 
@@ -90,6 +92,7 @@ class ReportFormField {
       id: id ?? this.id,
       description: description ?? this.description,
       name: name ?? this.name,
+      isRequired: isRequired ?? this.isRequired,
       type: type ?? this.type,
     );
   }
@@ -98,12 +101,14 @@ class ReportFormField {
       : id = json['id'],
         description = json['description'],
         name = json['name'],
+        isRequired = json['isRequired'],
         type = json['type'];
 
   Map toJson() => {
         'id': id,
         'description': description,
         'name': name,
+        'isRequired': isRequired,
         'type': type,
       };
 
