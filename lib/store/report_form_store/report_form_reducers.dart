@@ -4,11 +4,36 @@ import './report_form_actions.dart';
 
 ReportFormState reportFormStateReducer(ReportFormState state, action) {
   return ReportFormState(
-    reportForm: reportFormReducer(state.reportForm, action),
+    selectedReportForm: reportFormReducer(state.selectedReportForm, action),
+    reportForms: reportFormsReducer(state.reportForms, action),
   );
 }
 
-ReportForm reportFormReducer(ReportForm reportForm, action) {
+List<ReportForm> reportFormsReducer(List<ReportForm> reportForms, action) {
+  if (action is LoadedFormsAction) {
+    return action.reportForms;
+  }
+
+  if (action is UpdateReportFormAction) {
+    return reportForms
+        .map((reportForm) => reportForm.id == action.reportForm.id
+            ? action.reportForm
+            : reportForm)
+        .toList();
+  }
+
+  if (action is AddReportFormAction) {
+    return reportForms..add(action.reportForm);
+  }
+
+  if (action is RemoveFormAction) {
+    return reportForms..removeWhere((reportForm) => reportForm.id == action.reportForm.id);
+  }
+
+  return reportForms;
+}
+
+ReportForm reportFormReducer(ReportForm selectedReportForm, action) {
   if (action is AddReportFormAction) {
     return action.reportForm;
   }
@@ -26,18 +51,18 @@ ReportForm reportFormReducer(ReportForm reportForm, action) {
   }
 
   if (action is AddReportFormFieldAction) {
-    return reportForm.copyWith(
+    return selectedReportForm.copyWith(
         formFields: []
-          ..addAll(reportForm.formFields)
+          ..addAll(selectedReportForm.formFields)
           ..add(action.reportFormField));
   }
 
   if (action is RemoveReportFormFieldAction) {
-    return reportForm.copyWith(
+    return selectedReportForm.copyWith(
         formFields: []
-          ..addAll(reportForm.formFields)
+          ..addAll(selectedReportForm.formFields)
           ..remove(action.reportFormField));
   }
 
-  return reportForm;
+  return selectedReportForm;
 }

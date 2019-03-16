@@ -19,7 +19,7 @@ class DriverState {
         selectedDriver = null;
 
   Map toJson() => {
-        'selectedDriver': selectedDriver.toJson(),
+        'selectedDriver': selectedDriver != null ? selectedDriver.toJson() : null,
         'drivers': drivers.map((driver) => driver.toJson()),
       };
 }

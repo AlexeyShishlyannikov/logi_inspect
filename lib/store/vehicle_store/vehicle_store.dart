@@ -21,6 +21,7 @@ class VehicleState {
 
   Map toJson() => {
         'vehicles': vehicles.map((v) => v.toJson()),
-        'selectedVehicle': selectedVehicle.toJson(),
+        'selectedVehicle':
+            selectedVehicle != null ? selectedVehicle.toJson() : null,
       };
 }

@@ -18,12 +18,14 @@ import './actions.dart';
 void saveToPrefs(AppState state) async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   var string = json.encode(state.toJson());
+  print(string);
   await preferences.setString('appState', string);
 }
 
 Future<AppState> loadFromPrefs() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   var string = preferences.getString('appState');
+  print(string);
   if (string != null) {
     Map map = json.decode(string);
     return AppState.fromJson(map);
@@ -35,7 +37,8 @@ void appStateMiddleware(
     Store<AppState> store, action, NextDispatcher next) async {
   next(action);
 
-  particalStateMiddleware.forEach((middleware) => middleware(store, action, next));
+  particalStateMiddleware
+      .forEach((middleware) => middleware(store, action, next));
 
   if (action is LoadFromPreferencesAction) {
     await loadFromPrefs()
@@ -43,7 +46,8 @@ void appStateMiddleware(
   }
 }
 
-final List<Function(Store<AppState>, dynamic, Function(dynamic))> particalStateMiddleware = [
+final List<Function(Store<AppState>, dynamic, Function(dynamic))>
+    particalStateMiddleware = [
   companyStateMiddleware,
   driverStateMiddleware,
   reportFormStateMiddleware,

@@ -10,14 +10,29 @@ class RemoveFormAction {
   RemoveFormAction(this.reportForm);
 }
 
-class GetReportFormAction {
+class GetReportFormsAction {
   final String teamId;
-  GetReportFormAction(this.teamId);
+  GetReportFormsAction(this.teamId);
+}
+
+class GetReportFormAction {
+  final String reportFormId;
+  GetReportFormAction(this.reportFormId);
 }
 
 class LoadedFormAction {
   final ReportForm reportForm;
   LoadedFormAction(this.reportForm);
+}
+
+class LoadedFormsAction {
+  final List<ReportForm> reportForms;
+  LoadedFormsAction(this.reportForms);
+}
+
+class SelectFormAction {
+  final ReportForm reportForm;
+  SelectFormAction(this.reportForm);
 }
 
 class UpdateReportFormAction {

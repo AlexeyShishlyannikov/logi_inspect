@@ -11,7 +11,7 @@ class CompanyState {
   CompanyState.initialState() : company = null;
 
   CompanyState.fromJson(Map json)
-      : company = Company.fromJson(json['id'], json['company']);
+      : company = Company.fromJson(json);
 
   Map toJson() => {'company': company.toString()};
 }

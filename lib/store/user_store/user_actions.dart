@@ -1,16 +1,10 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:logisticsinspect/models/user.dart';
 
-class AddUserAction {
-  final User user;
-  AddUserAction({
-    @required this.user,
-  });
-}
-
 class RefreshTokenAction {}
-class RemoveUserAction {}
+
+class LogoutAction {}
+
 class LoginUserAction {
   final String email;
   final String password;
@@ -19,6 +13,11 @@ class LoginUserAction {
     @required this.email,
     @required this.password,
   });
+
+  Map toJson() => {
+        'email': email,
+        'password': password,
+      };
 }
 
 class RegisterUserAction {
@@ -29,16 +28,75 @@ class RegisterUserAction {
     @required this.email,
     @required this.password,
   });
+
+  Map toJson() => {
+        'email': email,
+        'password': password,
+        'confirmPassword': password,
+      };
 }
 
-class UpdateTokenDataAction {
-  final AuthenticationToken token;
-  UpdateTokenDataAction({
-    @required this.token,
+class RegisterCompanyAction {
+  final String companyName;
+  final String email;
+  final String password;
+
+  RegisterCompanyAction({
+    @required this.companyName,
+    @required this.email,
+    @required this.password,
   });
+
+  Map toJson() => {
+        'companyName': companyName,
+        'email': email,
+        'password': password,
+        'confirmPassword': password,
+      };
 }
 
-class RemoveTokenDataAction {}
+class ForgotPasswordAction {
+  final String email;
+  ForgotPasswordAction(this.email);
+
+  Map toJson() => {
+        'email': email,
+      };
+}
+
+class ResetPasswordAction {
+  final String email;
+  final String password;
+  final String resetToken;
+  ResetPasswordAction({
+    @required this.email,
+    @required this.password,
+    @required this.resetToken,
+  });
+
+  Map toJson() => {
+        'email': email,
+        'password': password,
+        'resetToken': resetToken,
+      };
+}
+
+class ChangePasswordAction {
+  final String email;
+  final String password;
+  final String oldPassword;
+  ChangePasswordAction({
+    @required this.email,
+    @required this.password,
+    @required this.oldPassword,
+  });
+
+  Map toJson() => {
+        'email': email,
+        'password': password,
+        'oldPassword': oldPassword,
+      };
+}
 
 class SetAuthenticationAction {
   final bool isAuthenticated;
@@ -46,6 +104,8 @@ class SetAuthenticationAction {
     @required this.isAuthenticated,
   });
 }
+
+class StartLoadingAction {}
 
 class LoadedUserAction {
   final User user;

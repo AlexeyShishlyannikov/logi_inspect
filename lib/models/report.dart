@@ -4,7 +4,7 @@ import 'package:logisticsinspect/models/report_form.dart';
 import 'package:logisticsinspect/models/vehicle.dart';
 
 class Report {
-  final int id;
+  final String id;
   final String name;
   final Vehicle vehicle;
   final ReportForm form;
@@ -23,7 +23,7 @@ class Report {
   });
 
   Report copyWith({
-    int id,
+    String id,
     String name,
     Vehicle vehicle,
     ReportForm form,

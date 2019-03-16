@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:logisticsinspect/constants/constants.dart';
+import 'package:logisticsinspect/store/store_model.dart';
+import 'package:logisticsinspect/store/user_store/user_thunk_actions.dart';
+import 'package:redux/redux.dart';
+import '../../store/user_store/user_actions.dart';
 
 enum AuthMode {
   Login,
@@ -15,11 +20,8 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   final _emailTextController = TextEditingController();
-
   final _passwordTextController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
-
   AuthMode _authMode = AuthMode.Login;
 
   Widget _buildEmailTextFormField() {
@@ -62,11 +64,18 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  void _submitForm() {
+  void _submitForm(_AuthViewModel viewModel) {
     if (!_formKey.currentState.validate()) {
       return;
     }
     _formKey.currentState.save();
+    if (_authMode == AuthMode.Login) {
+      viewModel.login(_emailTextController.text, _passwordTextController.text);
+    }
+    if (_authMode == AuthMode.Register) {
+      viewModel.register(
+          _emailTextController.text, _passwordTextController.text);
+    }
   }
 
   void _switchAuthModes() {
@@ -97,13 +106,27 @@ class _AuthPageState extends State<AuthPage> {
                       : Container(),
                   FlatButton(
                     child: Text('Switch to ' +
-                        (_authMode == AuthMode.Login ? 'SIGN UP' : 'LOGIN')),
+                        (_authMode == AuthMode.Login ? 'REGISTER' : 'LOGIN')),
                     onPressed: _switchAuthModes,
                   ),
-                  RaisedButton(
-                    child:
-                        Text(_authMode == AuthMode.Login ? 'Login' : 'Sign up'),
-                    onPressed: () => _submitForm(),
+                  StoreConnector<AppState, _AuthViewModel>(
+                    onInit: (store) {},
+                    converter: (store) => _AuthViewModel.fromStore(store),
+                    builder: (_, viewModel) {
+                      return viewModel.store.state.userState.isLoading
+                          ? CircularProgressIndicator()
+                          : RaisedButton(
+                              child: Text(_authMode == AuthMode.Login
+                                  ? 'Login'
+                                  : 'Register'),
+                              onPressed: () => _submitForm(viewModel),
+                            );
+                    },
+                    onDidChange: (viewModel) {
+                      if (viewModel.store.state.userState.isAuthenticated) {
+                        Navigator.pushReplacementNamed(context, '/dashvoard');
+                      }
+                    },
                   ),
                 ],
               ),
@@ -112,5 +135,26 @@ class _AuthPageState extends State<AuthPage> {
         ),
       ),
     );
+  }
+}
+
+class _AuthViewModel {
+  final Store<AppState> store;
+  _AuthViewModel({
+    @required this.store,
+  });
+
+  factory _AuthViewModel.fromStore(Store<AppState> store) {
+    return _AuthViewModel(store: store);
+  }
+
+  void login(String email, String password) {
+    store
+        .dispatch(loginUser(LoginUserAction(email: email, password: password)));
+  }
+
+  void register(String email, String password) {
+    store.dispatch(
+        registerUser(RegisterUserAction(email: email, password: password)));
   }
 }

@@ -1,38 +1,13 @@
-import 'package:logisticsinspect/store/store_model.dart';
-import 'package:logisticsinspect/store/user_store/user_store.dart';
-import './user_actions.dart';
-
-import 'dart:convert';
-import 'dart:async';
-
+import 'package:logisticsinspect/store/middleware.dart';
 import 'package:redux/redux.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-void saveToPrefs(UserState state) async {
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  var string = json.encode(state.toJson());
-  await preferences.setString('userState', string);
-}
-
-Future<UserState> loadFromPrefs() async {
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  var string = preferences.getString('userState');
-  if (string != null) {
-    Map map = json.decode(string);
-    return UserState.fromJson(map);
-  }
-  return UserState.initialState();
-}
+import 'package:logisticsinspect/store/store_model.dart';
+import './user_actions.dart';
 
 void userStateMiddleware(
     Store<AppState> store, action, NextDispatcher next) async {
   next(action);
 
-  if (action is AddUserAction || action is RemoveUserAction) {
-    saveToPrefs(store.state.userState);
-  }
-
-  if (action is LoginUserAction || action is RegisterUserAction) {
-    await loadFromPrefs().then((state) => store.dispatch(LoadedUserAction(state.user)));
+  if (action is LoadedUserAction || action is LogoutAction) {
+    saveToPrefs(store.state);
   }
 }

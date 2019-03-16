@@ -5,47 +5,37 @@ import 'package:logisticsinspect/store/user_store/user_store.dart';
 UserState userStateReducer(UserState state, action) {
   return UserState(
     user: userReducer(state.user, action),
-    token: tokenReducer(state.token, action),
     isAuthenticated: isAuthenticatedReducer(state.isAuthenticated, action),
+    isLoading: isLoadingReducer(state.isLoading, action),
   );
 }
 
 User userReducer(User state, action) {
-  if (action is AddUserAction) {
+  if (action is LogoutAction) {
+    return null;
+  }
+  if (action is LoadedUserAction) {
     return action.user;
   }
-  if (action is RemoveUserAction) {
-    return null;
-  }
-
-  // move to middleware
-  if (action is LoginUserAction) {
-    return User(token: '');
-  }
-  if (action is RegisterUserAction) {
-    return User(token: '');
-  }
-  if (action is RefreshTokenAction) {
-    return User(token: '');
-  }
-
-  return state;
-}
-
-AuthenticationToken tokenReducer(AuthenticationToken state, action) {
-  if (action is UpdateTokenDataAction) {
-    return action.token;
-  }
-  if (action is RemoveTokenDataAction) {
-    return null;
-  }
-
   return state;
 }
 
 bool isAuthenticatedReducer(bool state, action) {
-  if (action is SetAuthenticationAction) {
-    return action.isAuthenticated;
+  if (action is LoadedUserAction) {
+    return true;
+  }
+  if (action is LogoutAction) {
+    return false;
+  }
+  return state;
+}
+
+bool isLoadingReducer(bool state, action) {
+  if (action is StartLoadingAction) {
+    return true;
+  }
+  if (action is LoadedUserAction) {
+    return false;
   }
   return state;
 }

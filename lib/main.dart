@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:logisticsinspect/pages/auth_pages/auth_page.dart';
-
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_thunk/redux_thunk.dart';
+
+import 'package:logisticsinspect/pages/dashboard_pages/dashboard_page.dart';
+import 'package:logisticsinspect/routes.dart';
 
 import './store/actions.dart';
 import './store/reducers.dart';
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
     final Store<AppState> store = Store<AppState>(
       appStateReducer,
       initialState: AppState.initialState(),
-      middleware: [appStateMiddleware],
+      middleware: [appStateMiddleware, thunkMiddleware],
     );
 
     return StoreProvider<AppState>(
@@ -30,30 +32,13 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: Container(),
-            initialRoute: '',
-            routes: {
-              '': (BuildContext context) => AuthPage(),
-              // '/products': (BuildContext context) => ProductsPage(mainModel),
-              // '/admin': (BuildContext context) => ProductsAdminPage(mainModel),
-            },
-            // onGenerateRoute: (RouteSettings settings) {
-            //   final List<String> pathElements = settings.name.split('/');
-            //   if (pathElements[0] != '') {
-            //     return null;
-            //   }
-            //   if (pathElements[1] == 'product') {
-            //     final String productId = pathElements[2];
-            //     final Product product = mainModel.allProducts
-            //         .firstWhere((prod) => prod.id == productId);
-            //     return MaterialPageRoute<bool>(
-            //       builder: (BuildContext context) => ProductPage(product),
-            //     );
-            //   }
-            // },
+            initialRoute:
+                store.state.userState.isAuthenticated ? '/' : '/auth/login',
+            routes: appRoutes,
+            onGenerateRoute: appRouteGenerator,
             onUnknownRoute: (RouteSettings settings) {
               return MaterialPageRoute(
-                builder: (BuildContext context) => AuthPage(),
+                builder: (BuildContext context) => DashboardPage(),
               );
             },
           );
@@ -62,30 +47,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class _ViewModel {
-//   final List<Item> items;
-//   final Function(String) onAddItem;
-//   final Function(Item) onRemoveItem;
-//   final Function() onRemoveItems;
-
-//   _ViewModel({
-//     this.items,
-//     this.onAddItem,
-//     this.onRemoveItem,
-//     this.onRemoveItems,
-//   });
-
-//   factory _ViewModel.create(Store<AppState> store) {
-//     _onAddItem(String body) => store.dispatch(AddItemAction(body));
-//     _onRemoveItem(Item item) => store.dispatch(RemoveItemAction(item));
-//     _onRemoveItems() => store.dispatch(RemoveItemsAction());
-
-//     return _ViewModel(
-//       items: store.state.items,
-//       onAddItem: _onAddItem,
-//       onRemoveItem: _onRemoveItem,
-//       onRemoveItems: _onRemoveItems,
-//     );
-//   }
-// }

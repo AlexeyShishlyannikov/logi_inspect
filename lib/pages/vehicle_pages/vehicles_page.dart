@@ -1,33 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:logisticsinspect/widgets/drawers/drawer.dart';
+import 'package:logisticsinspect/widgets/vehicle/vehicle_tile.dart';
 
 class VehiclesPage extends StatelessWidget {
-  Widget _buildVehicleImage() {
-    return Container();
-  }
-
-  Widget _buildVehicleCardTitle() {
-    return Container();
-  }
-
-  Widget _buildVehicleStatsText() {
-    return Container();
-  }
-
-  Widget _buildSelectButton() {
-    return Container();
+  Widget _buildSearchBox() {
+    return TextField(
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.search),
+        labelText: 'Search',
+      ),
+      keyboardType: TextInputType.text,
+      onChanged: (String input) {},
+    );
   }
 
   Widget _buildVehicleCard(BuildContext context, int index) {
     return Container(
       padding: EdgeInsets.all(10.0),
-      child: Row(
-        children: <Widget>[
-          _buildVehicleImage(),
-          _buildVehicleCardTitle(),
-          _buildVehicleStatsText(),
-          Expanded(child: Container()),
-          _buildSelectButton(),
-        ],
+      child: VehicleTile(
+        onSelected: () {
+          Navigator.pushNamed(context, '/vehicles/view/' + index.toString());
+        },
       ),
     );
   }
@@ -38,10 +31,19 @@ class VehiclesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Vehicles'),
       ),
-      body: Container(
-        child: ListView.builder(
-          itemBuilder: _buildVehicleCard,
-          itemCount: 4,
+      drawer: AppDrawer(),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: Column(
+          children: <Widget>[
+            _buildSearchBox(),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: _buildVehicleCard,
+                itemCount: 4,
+              ),
+            ),
+          ],
         ),
       ),
     );

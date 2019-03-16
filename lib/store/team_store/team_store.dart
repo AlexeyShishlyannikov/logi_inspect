@@ -15,7 +15,7 @@ class TeamState {
 
   Map toJson() => {
         'teams': teams.map((team) => team.toJson()),
-        'selectedTeam': selectedTeam.toJson(),
+        'selectedTeam': selectedTeam != null ? selectedTeam.toJson() : null,
       };
 
   TeamState.initialState()
